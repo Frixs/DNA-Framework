@@ -57,7 +57,7 @@ namespace Ixs.DNA
 
             // Log the startup complete
             if (logStarted)
-                Logger.LogCriticalSource($"Dna Framework started in {FrameworkEnvironment.Configuration}...");
+                Logger.LogCriticalSource($"Ixs.DNA Framework started in {FrameworkEnvironment.Configuration}...");
         }
 
         /// <summary>
@@ -74,7 +74,7 @@ namespace Ixs.DNA
 
             // Log the startup complete
             if (logStarted)
-                Logger.LogCriticalSource($"Dna Framework started in {FrameworkEnvironment.Configuration}...");
+                Logger.LogCriticalSource($"Ixs.DNA Framework started in {FrameworkEnvironment.Configuration}...");
         }
 
         /// <summary>

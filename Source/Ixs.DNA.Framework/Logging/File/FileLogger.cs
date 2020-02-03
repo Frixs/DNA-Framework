@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Concurrent;
+using System.Collections.Generic;
 using System.IO;
 using Microsoft.Extensions.Logging;
 
@@ -109,22 +110,21 @@ namespace Ixs.DNA
                 return;
 
             // Get current time
-            var currentTime = DateTimeOffset.Now.ToString("yyyy-MM-dd hh:mm:ss");
+            var currentTime = DateTimeOffset.Now.ToString("yyyy-MM-dd HH:mm:ss");
 
             // Prepend log level
-            var logLevelString = mConfiguration.OutputLogLevel ? $"{logLevel.ToString().ToUpper()}: " : "";
+            var logLevelString = mConfiguration.OutputLogLevel ? $"[{logLevel.ToString().ToUpper()}]" : "";
 
             // Prepend the time to the log if desired
-            var timeLogString = mConfiguration.LogTime ? $"[{currentTime}] " : "";
+            var timeLogString = mConfiguration.LogTime ? $"[{currentTime}]" : "";
 
             // Get the formatted message string
             var message = formatter(state, exception);
 
             // Write the message
-            var output = $"{logLevelString}{timeLogString}{message}{Environment.NewLine}";
+            var output = $"{timeLogString} {logLevelString} {message}{Environment.NewLine}";
 
             // Normalize path
-            // TODO: Make use of configuration base path
             var normalizedPath = mFilePath.ToUpper();
 
             var fileLock = default(object);
@@ -143,18 +143,59 @@ namespace Ixs.DNA
                 if (!Directory.Exists(mDirectory))
                     Directory.CreateDirectory(mDirectory);
 
+                // Init file size
+                long fileSize = 0;
+
                 // Open the file
                 using (var fileStream = new StreamWriter(File.Open(mFilePath, FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.ReadWrite)))
                 {
                     // Go to end
                     fileStream.BaseStream.Seek(0, SeekOrigin.End);
-
+                    
                     // NOTE: Ignore logToTop in configuration as not efficient for files on OS
 
                     // Write the message to the file
                     fileStream.Write(output);
+
+                    // Get file size
+                    fileSize = fileStream.BaseStream.Length;
                 }
+
+                // Check if the file needs to be cleaned
+                // If the configuration allows to clean the file and the file needs to be cleaned at the same time
+                if (mConfiguration.TrimByteSize > 0 && fileSize > mConfiguration.TrimByteSize)
+                    // Clean file
+                    CleanFile();
             }
         }
+
+        /// <summary>
+        /// Clean the log file
+        /// </summary>
+        private void CleanFile()
+        {
+            // Get all log lines
+            var lines = new List<string>();
+            using (var reader = new StreamReader(mFilePath))
+            {
+                var line = reader.ReadLine();
+                var c = 0;
+                while (line != null)
+                {
+                    lines.Add(line);
+                    line = reader.ReadLine();
+                    c++;
+                }
+            }
+
+            // Rewrite the lines into the file
+            using (var fileStream = new StreamWriter(File.Open(mFilePath, FileMode.Create, FileAccess.ReadWrite, FileShare.ReadWrite)))
+            {
+                // Write down only half of the lines (newer one)
+                for (int i = lines.Count / 2; i < lines.Count; i++)
+                    fileStream.WriteLine(lines[i]);
+            }
+        }
+
     }
 }

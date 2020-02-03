@@ -1,7 +1,7 @@
-# Ixs DNA Framework
+# DNA Framework /ixs
 A cross-platform base framework useful for all projects that use .Net Core
 
-# Installing Ixs DNA Framework
+# Installing DNA Framework
 
 You can install `Ixs.DNA.Framework` from your Visual Studio projects `Manage NuGet Packages` dialog and search for `Ixs.DNA.Framework`
 

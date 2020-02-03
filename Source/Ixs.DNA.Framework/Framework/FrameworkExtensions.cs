@@ -58,7 +58,7 @@ namespace Ixs.DNA
         /// Configures a framework construction using the provided configuration
         /// </summary>
         /// <param name="construction">The construction to configure</param>
-        /// <param name="configure">The configuration</param>
+        /// <param name="configuration">The configuration</param>
         /// <returns></returns>
         public static FrameworkConstruction AddConfiguration(this FrameworkConstruction construction, IConfiguration configuration)
         {
@@ -105,15 +105,16 @@ namespace Ixs.DNA
                 options.AddConfiguration(construction.Configuration.GetSection("Logging"));
 
                 // Add console logger
-                options.AddConsole();
+                // TODO: Do I need console logger?
+                //options.AddConsole();
 
                 // Add debug logger
                 options.AddDebug();
             });
 
             // Adds a default logger so that we can get a non-generic ILogger
-            // that will have the category name of "Dna"
-            construction.Services.AddTransient(provider => provider.GetService<ILoggerFactory>().CreateLogger("Dna"));
+            // that will have the category name of "Ixs.DNA"
+            construction.Services.AddTransient(provider => provider.GetService<ILoggerFactory>().CreateLogger("Ixs.DNA (Framework)"));
 
             // Chain the construction
             return construction;

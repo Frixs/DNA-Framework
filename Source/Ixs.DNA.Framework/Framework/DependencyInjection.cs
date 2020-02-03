@@ -36,10 +36,5 @@ namespace Ixs.DNA
         /// Gets the framework environment
         /// </summary>
         public static IFrameworkEnvironment FrameworkEnvironment => Framework.Provider.GetService<IFrameworkEnvironment>();
-
-        /// <summary>
-        /// Gets the framework exception handler
-        /// </summary>
-        public static IExceptionHandler ExceptionHandler => Framework.Provider.GetService<IExceptionHandler>();
     }
 }

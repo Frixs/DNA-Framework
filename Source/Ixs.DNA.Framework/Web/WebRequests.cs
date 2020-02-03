@@ -270,7 +270,7 @@ namespace Ixs.DNA
                     return result;
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 // If deserialize failed then set error message
                 result.ErrorMessage = "Failed to deserialize server response to the expected type";
