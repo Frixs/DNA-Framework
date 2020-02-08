@@ -35,7 +35,7 @@ namespace Ixs.DNA
         /// <param name="content">The string</param>
         /// <param name="parameters">Format parameters</param>
         /// <returns></returns>
-        public static string Format(this string content, object[] parameters = null)
+        public static string Format(this string content, params object[] parameters)
         {
             return string.Format(content, parameters);
         }
