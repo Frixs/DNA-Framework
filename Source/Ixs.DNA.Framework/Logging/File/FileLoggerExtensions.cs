@@ -34,6 +34,7 @@ namespace Ixs.DNA
         /// </summary>
         /// <param name="construction">The construction</param>
         /// <param name="logPath">The path of the file to log to</param>
+        /// <param name="logLevel">Log level start for logging</param>
         /// <param name="trimSize">Says what file size triggers the trimming to half of the logs in a file. Unit = Byte</param>
         /// <returns></returns>
         public static FrameworkConstruction AddFileLogger(this FrameworkConstruction construction, string logPath = "log.txt", LogLevel logLevel = LogLevel.Information, int trimSize = 0)

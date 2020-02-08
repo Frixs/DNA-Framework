@@ -26,6 +26,7 @@ namespace Ixs.DNA
         /// <typeparam name="T">The type of return value</typeparam>
         /// <typeparam name="In">The input to the expression</typeparam>
         /// <param name="lambda">The expression to compile</param>
+        /// <param name="input"></param>
         /// <returns></returns>
         public static T GetPropertyValue<In, T>(this Expression<Func<In, T>> lambda, In input)
         {
@@ -59,6 +60,7 @@ namespace Ixs.DNA
         /// <typeparam name="In">The input to the expression</typeparam>
         /// <param name="lambda">The expression</param>
         /// <param name="value">The value to set the property to</param>
+        /// <param name="input"></param>
         public static void SetPropertyValue<In, T>(this Expression<Func<In, T>> lambda, T value, In input)
         {
             // Converts a lambda () => some.Property, to some.Property

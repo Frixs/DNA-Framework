@@ -1,0 +1,27 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <RootNamespace>Ixs.DNA.AspNet</RootNamespace>
+    <Authors>Tomas Frixs</Authors>
+    <Company>Frixs</Company>
+    <Description>The ASP.Net Core easy-integration support for Dna.Framework, the cross-platform base framework useful for all projects that use .Net Core</Description>
+    <PackageProjectUrl>https://github.com/Frixs/DNA-Framework</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/angelsix/dna-framework</RepositoryUrl>
+    <PackageTags>dna framework asp net angelsix luke malpass web core cross platform</PackageTags>
+    <PackageReleaseNotes>The ASP.Net Core easy-integration support for Dna.Framework, the cross-platform base framework useful for all projects that use .Net Core</PackageReleaseNotes>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <Version>1.0.7.00000</Version>
+    <UserSecretsId>88bce10f-a24c-421d-9cbd-de1c99f427e5</UserSecretsId>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DocumentationFile>bin\Release\netstandard2.0\Dna.Framework.AspNet.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Ixs.DNA.Framework" Version="1.0.7.15000" />
+    <PackageReference Include="Microsoft.AspNetCore.Hosting.Abstractions" Version="2.2.0" />
+  </ItemGroup>
+
+</Project>

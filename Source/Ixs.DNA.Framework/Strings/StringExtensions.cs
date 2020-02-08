@@ -73,6 +73,7 @@ namespace Ixs.DNA
         /// Remove N lines from the beginning of the string.
         /// </summary>
         /// <param name="content">The string</param>
+        /// <param name="nLines">Number of lines affected</param>
         /// <returns></returns>
         public static string RemoveFirstLines(this string content, int nLines)
         {
@@ -84,6 +85,7 @@ namespace Ixs.DNA
         /// Get N lines from the beginning of the string.
         /// </summary>
         /// <param name="content">The string</param>
+        /// <param name="nLines">Number of lines affected</param>
         /// <returns></returns>
         public static string GetFirstLines(this string content, int nLines)
         {
