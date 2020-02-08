@@ -136,7 +136,7 @@ namespace Ixs.DNA
                 // Currently unknown
                 else
                 {
-                    // TODO: Throw error once we have Dna Framework exception types
+                    // TODO: Throw error once we have DNA Framework exception types
                 }
 
                 // 

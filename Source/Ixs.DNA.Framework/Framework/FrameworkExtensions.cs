@@ -81,9 +81,6 @@ namespace Ixs.DNA
         /// <returns></returns>
         public static FrameworkConstruction AddDefaultServices(this FrameworkConstruction construction)
         {
-            // Add exception handler
-            construction.AddDefaultExceptionHandler();
-
             // Add default logger
             construction.AddDefaultLogger();
 
@@ -105,7 +102,6 @@ namespace Ixs.DNA
                 options.AddConfiguration(construction.Configuration.GetSection("Logging"));
 
                 // Add console logger
-                // TODO: Do I need console logger?
                 //options.AddConsole();
 
                 // Add debug logger
@@ -115,20 +111,6 @@ namespace Ixs.DNA
             // Adds a default logger so that we can get a non-generic ILogger
             // that will have the category name of "Ixs.DNA"
             construction.Services.AddTransient(provider => provider.GetService<ILoggerFactory>().CreateLogger("Ixs.DNA (Framework)"));
-
-            // Chain the construction
-            return construction;
-        }
-
-        /// <summary>
-        /// Injects the default exception handler into the framework construction
-        /// </summary>
-        /// <param name="construction">The construction</param>
-        /// <returns></returns>
-        public static FrameworkConstruction AddDefaultExceptionHandler(this FrameworkConstruction construction)
-        {
-            // Bind a static instance of the BaseExceptionHandler
-            construction.Services.AddSingleton<IExceptionHandler>(new BaseExceptionHandler());
 
             // Chain the construction
             return construction;

@@ -35,7 +35,7 @@ namespace Ixs.DNA
         /// <summary>
         /// Indicates if the endpoint is responsive (at the last interval returned a valid response)
         /// </summary>
-        public bool Responsive { get; set; }
+        public bool Responsive { get; set; } = true;
 
         #endregion
 
@@ -102,13 +102,11 @@ namespace Ixs.DNA
 
                     // If the state has changed...
                     if (responsive != Responsive)
-                    {
-                        // Set new value
-                        Responsive = responsive;
-
                         // Inform listener
                         mStateChangedCallback?.Invoke(responsive);
-                    }
+
+                    // Set new value
+                    Responsive = responsive;
 
                     // If we are not disposing...
                     if (!mDisposing)
