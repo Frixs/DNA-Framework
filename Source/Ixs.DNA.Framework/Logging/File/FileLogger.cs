@@ -113,16 +113,16 @@ namespace Ixs.DNA
             var currentTime = DateTimeOffset.Now.ToString("yyyy-MM-dd HH:mm:ss");
 
             // Prepend log level
-            var logLevelString = mConfiguration.OutputLogLevel ? $"[{logLevel.ToString().ToUpper()}]" : "";
+            var logLevelString = mConfiguration.OutputLogLevel ? $"[{logLevel.ToString().ToUpper()}] " : "";
 
             // Prepend the time to the log if desired
-            var timeLogString = mConfiguration.LogTime ? $"[{currentTime}]" : "";
+            var timeLogString = mConfiguration.LogTime ? $"[{currentTime}] " : "";
 
             // Get the formatted message string
             var message = formatter(state, exception);
 
             // Write the message
-            var output = $"{timeLogString} {logLevelString} {message}{Environment.NewLine}";
+            var output = $"{timeLogString}{logLevelString}{message}{Environment.NewLine}";
 
             // Normalize path
             var normalizedPath = mFilePath.ToUpper();
