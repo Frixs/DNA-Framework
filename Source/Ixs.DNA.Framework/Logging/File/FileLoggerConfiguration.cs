@@ -1,5 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
-using System;
+using System.Text;
 
 namespace Ixs.DNA
 {
@@ -31,6 +31,12 @@ namespace Ixs.DNA
         /// Unit: Byte
         /// </summary>
         public int TrimByteSize { get; set; } = 0;
+
+        /// <summary>
+        /// Encoding to use to file manipulation
+        /// Default: UTF8
+        /// </summary>
+        public Encoding FileEncoding { get; set; } = Encoding.UTF8;
 
         #endregion
     }

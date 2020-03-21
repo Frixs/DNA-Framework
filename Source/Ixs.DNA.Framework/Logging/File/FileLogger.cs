@@ -1,8 +1,8 @@
-﻿using System;
+﻿using Microsoft.Extensions.Logging;
+using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.IO;
-using Microsoft.Extensions.Logging;
 
 namespace Ixs.DNA
 {
@@ -46,6 +46,19 @@ namespace Ixs.DNA
         /// The configuration to use
         /// </summary>
         protected FileLoggerConfiguration mConfiguration;
+
+        #endregion
+
+        #region Public Properties
+
+        #region Public Properties
+
+        /// <summary>
+        /// Kepp track of last file clean (or startup)
+        /// </summary>
+        public DateTime LastFileCleanDate { get; private set; } = DateTime.Now;
+
+        #endregion
 
         #endregion
 
@@ -147,7 +160,7 @@ namespace Ixs.DNA
                 long fileSize = 0;
 
                 // Open the file
-                using (var fileStream = new StreamWriter(File.Open(mFilePath, FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.ReadWrite)))
+                using (var fileStream = new StreamWriter(File.Open(mFilePath, FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.ReadWrite), encoding: mConfiguration.FileEncoding)) // TODO: Add encoding into FileLoggerCOnfiguration with default value UTF8
                 {
                     // Go to end
                     fileStream.BaseStream.Seek(0, SeekOrigin.End);
@@ -176,7 +189,7 @@ namespace Ixs.DNA
         {
             // Get all log lines
             var lines = new List<string>();
-            using (var reader = new StreamReader(mFilePath))
+            using (var reader = new StreamReader(mFilePath, encoding: mConfiguration.FileEncoding))
             {
                 var line = reader.ReadLine();
                 var c = 0;
@@ -189,12 +202,15 @@ namespace Ixs.DNA
             }
 
             // Rewrite the lines into the file
-            using (var fileStream = new StreamWriter(File.Open(mFilePath, FileMode.Create, FileAccess.ReadWrite, FileShare.ReadWrite)))
+            using (var fileStream = new StreamWriter(File.Open(mFilePath, FileMode.Create, FileAccess.ReadWrite, FileShare.ReadWrite), encoding: mConfiguration.FileEncoding))
             {
                 // Write down only half of the lines (newer one)
                 for (int i = lines.Count / 2; i < lines.Count; i++)
                     fileStream.WriteLine(lines[i]);
             }
+
+            // Record the date of clean
+            LastFileCleanDate = DateTime.Now;
         }
 
     }
