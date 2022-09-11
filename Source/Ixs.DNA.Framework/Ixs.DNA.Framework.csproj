@@ -5,25 +5,34 @@
     <RootNamespace>Ixs.DNA</RootNamespace>
     <Authors>Tomas Frixs</Authors>
     <Company>Frixs</Company>
-    <Description>A cross-platform base framework useful for all projects that use .NET (x64)</Description>
+    <Description>A cross-platform base framework useful for all projects that use .NET (x64).</Description>
     <PackageProjectUrl>https://github.com/Frixs/DNA-Framework</PackageProjectUrl>
     <RepositoryUrl>https://github.com/Frixs/DNA-Framework</RepositoryUrl>
     <PackageTags></PackageTags>
-    <PackageReleaseNotes>A cross-platform base framework useful for all projects that use .Net Core</PackageReleaseNotes>
+    <PackageReleaseNotes>CPU support changed to x64 only. String extensions reduced. File logger updated greatly. Null checks for DI.</PackageReleaseNotes>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Version>10.0.0.1</Version>
     <PackageId>Ixs.DNA.Framework</PackageId>
     <PlatformTarget>x64</PlatformTarget>
     <Title>Ixs.DNA.Framework</Title>
-    <Copyright>Tomas Frixs</Copyright>
+    <Copyright></Copyright>
     <PackageIcon>icon.png</PackageIcon>
+    <Platforms>AnyCPU;x64</Platforms>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DocumentationFile></DocumentationFile>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <DocumentationFile />
+  </PropertyGroup>
+
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DocumentationFile>bin\Release\netstandard2.0\Dna.Framework.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <DocumentationFile>bin\Release\netstandard2.0\Dna.Framework.xml</DocumentationFile>
   </PropertyGroup>
 

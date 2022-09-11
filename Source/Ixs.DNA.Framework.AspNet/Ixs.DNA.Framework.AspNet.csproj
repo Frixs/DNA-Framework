@@ -5,20 +5,33 @@
     <RootNamespace>Ixs.DNA.AspNet</RootNamespace>
     <Authors>Tomas Frixs</Authors>
     <Company>Frixs</Company>
-    <Description>The ASP.Net Core easy-integration support for Dna.Framework, the cross-platform base framework useful for all projects that use .Net Core</Description>
+    <Description>The ASP.Net Core easy-integration support for Dna.Framework, the cross-platform base framework useful for all projects that use .Net Core (x64).</Description>
     <PackageProjectUrl>https://github.com/Frixs/DNA-Framework</PackageProjectUrl>
     <RepositoryUrl>https://github.com/angelsix/dna-framework</RepositoryUrl>
     <PackageTags>dna framework asp net angelsix luke malpass web core cross platform</PackageTags>
-    <PackageReleaseNotes>The ASP.Net Core easy-integration support for Dna.Framework, the cross-platform base framework useful for all projects that use .Net Core</PackageReleaseNotes>
+    <PackageReleaseNotes>CPU support changed to x64 only.</PackageReleaseNotes>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <Version>10.0.0.1</Version>
     <UserSecretsId>88bce10f-a24c-421d-9cbd-de1c99f427e5</UserSecretsId>
     <PlatformTarget>x64</PlatformTarget>
+    <Platforms>AnyCPU;x64</Platforms>
+    <PackageIcon>icon.png</PackageIcon>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <DocumentationFile>bin\Release\netstandard2.0\Dna.Framework.AspNet.xml</DocumentationFile>
   </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <DocumentationFile>bin\Release\netstandard2.0\Dna.Framework.AspNet.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\icon.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Ixs.DNA.Framework" Version="1.0.7.15000" />
