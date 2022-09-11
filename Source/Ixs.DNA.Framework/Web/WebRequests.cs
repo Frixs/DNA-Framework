@@ -226,7 +226,7 @@ namespace Ixs.DNA
             }
 
             // If we have no content to deserialize...
-            if (result.RawServerResponse.IsNullOrEmpty())
+            if (string.IsNullOrEmpty(result.RawServerResponse))
                 // Done
                 return result;
 

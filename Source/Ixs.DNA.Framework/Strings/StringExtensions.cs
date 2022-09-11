@@ -5,46 +5,15 @@ using System.Text.RegularExpressions;
 namespace Ixs.DNA
 {
     /// <summary>
-    /// Extension methods for strings
+    ///     Extension methods for strings
     /// </summary>
     public static class StringExtensions
     {
         /// <summary>
-        /// Returns true if the string is null or an empty string
+        ///     Simple URL check.
         /// </summary>
         /// <param name="content">The string</param>
-        /// <returns></returns>
-        public static bool IsNullOrEmpty(this string content)
-        {
-            return string.IsNullOrEmpty(content);
-        }
-
-        /// <summary>
-        /// Returns true if the string is null or an empty string or just whitespace
-        /// </summary>
-        /// <param name="content">The string</param>
-        /// <returns></returns>
-        public static bool IsNullOWhiteSpace(this string content)
-        {
-            return string.IsNullOrWhiteSpace(content);
-        }
-
-        /// <summary>
-        /// Returns formatted string
-        /// </summary>
-        /// <param name="content">The string</param>
-        /// <param name="parameters">Format parameters</param>
-        /// <returns></returns>
-        public static string Format(this string content, params object[] parameters)
-        {
-            return string.Format(content, parameters);
-        }
-
-        /// <summary>
-        /// Simple URL check.
-        /// </summary>
-        /// <param name="content">The string</param>
-        /// <returns></returns>
+        /// <returns><see langword="true"/> = is URL, <see langword="false"/> otherwise</returns>
         public static bool IsURL(this string content)
         {
             Uri uriResult;
@@ -52,29 +21,11 @@ namespace Ixs.DNA
         }
 
         /// <summary>
-        /// Check if the string has appropriate form of HEX color.
-        /// </summary>
-        /// <param name="content">The string</param>
-        /// <param name="hasHashmark"></param>
-        /// <param name="allowAlpha">True to include alpha into the search</param>
-        /// <returns></returns>
-        public static bool IsColorHEX(this string content, bool hasHashmark = false, bool allowAlpha = false)
-        {
-            var standard = @"^" + (hasHashmark ? "#" : "") + "[A-Fa-f0-9]{6}$";
-            var alpha = @"^" + (hasHashmark ? "#" : "") + "[A-Fa-f0-9]{8}$";
-
-            return Regex.IsMatch(
-                content, 
-                standard + (allowAlpha ? "|" + alpha : "")
-                );
-        }
-
-        /// <summary>
-        /// Remove N lines from the beginning of the string.
+        ///     Remove N lines from the beginning of the string.
         /// </summary>
         /// <param name="content">The string</param>
         /// <param name="nLines">Number of lines affected</param>
-        /// <returns></returns>
+        /// <returns>Modified string</returns>
         public static string RemoveFirstLines(this string content, int nLines)
         {
             var lines = Regex.Split(content, "\r\n|\r|\n").Skip(nLines);
@@ -86,7 +37,7 @@ namespace Ixs.DNA
         /// </summary>
         /// <param name="content">The string</param>
         /// <param name="nLines">Number of lines affected</param>
-        /// <returns></returns>
+        /// <returns>Modified string</returns>
         public static string GetFirstLines(this string content, int nLines)
         {
             var lines = Regex.Split(content, "\r\n|\r|\n");

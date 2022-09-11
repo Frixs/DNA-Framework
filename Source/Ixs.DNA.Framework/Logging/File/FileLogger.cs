@@ -1,7 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Concurrent;
-using System.Collections.Generic;
 using System.IO;
 
 namespace Ixs.DNA
@@ -35,30 +34,12 @@ namespace Ixs.DNA
         /// <summary>
         /// The file path to write to
         /// </summary>
-        protected readonly string mFilePath;
-
-        /// <summary>
-        /// The directory the file is in
-        /// </summary>
-        protected readonly string mDirectory;
+        protected readonly string mLogPath;
 
         /// <summary>
         /// The configuration to use
         /// </summary>
         protected FileLoggerConfiguration mConfiguration;
-
-        #endregion
-
-        #region Public Properties
-
-        #region Public Properties
-
-        /// <summary>
-        /// Kepp track of last file clean (or startup)
-        /// </summary>
-        public DateTime LastFileCleanDate { get; private set; } = DateTime.Now;
-
-        #endregion
 
         #endregion
 
@@ -68,17 +49,13 @@ namespace Ixs.DNA
         /// Default constructor
         /// </summary>
         /// <param name="categoryName">The category for this logger</param>
-        /// <param name="filePath">The file path to write to</param>
+        /// <param name="logPath">The path of the folder to log to</param>
         /// <param name="configuration">The configuration to use</param>
-        public FileLogger(string categoryName, string filePath, FileLoggerConfiguration configuration)
+        public FileLogger(string categoryName, string logPath, FileLoggerConfiguration configuration)
         {
-            // Get absolute path
-            filePath = Path.GetFullPath(filePath);
-
             // Set members
             mCategoryName = categoryName;
-            mFilePath = filePath;
-            mDirectory = Path.GetDirectoryName(filePath);
+            mLogPath = Path.GetFullPath(logPath); // Get absolute path
             mConfiguration = configuration;
         }
 
@@ -117,101 +94,63 @@ namespace Ixs.DNA
         /// <param name="formatter">The formatter for converting the state and exception to a message string</param>
         public void Log<TState>(LogLevel logLevel, EventId eventId, TState state, Exception exception, Func<TState, Exception, string> formatter)
         {
-            // If we should not log...
+            // If we should NOT log...
             if (!IsEnabled(logLevel))
-                // Return
                 return;
 
+            // Get wanted DTO
+            DateTimeOffset dto = mConfiguration.UseUtcTime ? DateTimeOffset.UtcNow : DateTimeOffset.Now;
+
             // Get current time
-            var currentTime = DateTimeOffset.Now.ToString("yyyy-MM-dd HH:mm:ss");
-
+            string currentTimeString = dto.ToString("yyyy-MM-dd HH:mm:ss");
+            string currentYearMonthString = dto.ToString("yyyy-MM");
             // Prepend log level
-            var logLevelString = mConfiguration.OutputLogLevel ? $"[{logLevel.ToString().ToUpper()}] " : "";
-
+            string logLevelString = mConfiguration.OutputLogLevel ? $"[{logLevel.ToString().ToUpper()}] " : "";
             // Prepend the time to the log if desired
-            var timeLogString = mConfiguration.LogTime ? $"[{currentTime}] " : "";
-
+            string timeLogString = mConfiguration.OutputLogTime ? $"[{currentTimeString}] " : "";
             // Get the formatted message string
-            var message = formatter(state, exception);
-
+            string message = formatter(state, exception);
             // Write the message
-            var output = $"{timeLogString}{logLevelString}{message}{Environment.NewLine}";
+            string output = $"{timeLogString}{logLevelString}{message}{Environment.NewLine}";
+            // Normalize log path
+            string normalizedLogPath = mLogPath.ToUpper();
 
-            // Normalize path
-            var normalizedPath = mFilePath.ToUpper();
-
+            // Get dir info based on configuration
+            string fileDirPath = mConfiguration.SingleLogFile
+                ? Path.GetDirectoryName(mLogPath) // single file
+                : Path.Combine(mLogPath, currentYearMonthString); // datetime file hierarchy
+            
+            // Get file info based on configuration
+            string filePath = mConfiguration.SingleLogFile
+                ? mLogPath // single file
+                : Path.Combine(fileDirPath, $"{dto:yyyy-MM-dd}.log"); // datetime file hierarchy
+            
             var fileLock = default(object);
-
             // Double safety even though the FileLocks should be thread safe
             lock (FileLockLock)
             {
                 // Get the file lock based on the absolute path
-                fileLock = FileLocks.GetOrAdd(normalizedPath, path => new object());
+                fileLock = FileLocks.GetOrAdd(normalizedLogPath, path => new object());
             }
-
             // Lock the file
             lock (fileLock)
             {
-                // Ensure folder
-                if (!Directory.Exists(mDirectory))
-                    Directory.CreateDirectory(mDirectory);
-
-                // Init file size
-                long fileSize = 0;
+                // Ensure folder exists
+                if (!Directory.Exists(fileDirPath))
+                    Directory.CreateDirectory(fileDirPath);
 
                 // Open the file
-                using (var fileStream = new StreamWriter(File.Open(mFilePath, FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.ReadWrite), encoding: mConfiguration.FileEncoding)) // TODO: Add encoding into FileLoggerCOnfiguration with default value UTF8
+                using (var fileStream = new StreamWriter(File.Open(filePath, FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.ReadWrite), encoding: mConfiguration.FileEncoding))
                 {
                     // Go to end
                     fileStream.BaseStream.Seek(0, SeekOrigin.End);
-                    
+
                     // NOTE: Ignore logToTop in configuration as not efficient for files on OS
 
                     // Write the message to the file
                     fileStream.Write(output);
-
-                    // Get file size
-                    fileSize = fileStream.BaseStream.Length;
-                }
-
-                // Check if the file needs to be cleaned
-                // If the configuration allows to clean the file and the file needs to be cleaned at the same time
-                if (mConfiguration.TrimByteSize > 0 && fileSize > mConfiguration.TrimByteSize)
-                    // Clean file
-                    CleanFile();
-            }
-        }
-
-        /// <summary>
-        /// Clean the log file
-        /// </summary>
-        private void CleanFile()
-        {
-            // Get all log lines
-            var lines = new List<string>();
-            using (var reader = new StreamReader(mFilePath, encoding: mConfiguration.FileEncoding))
-            {
-                var line = reader.ReadLine();
-                var c = 0;
-                while (line != null)
-                {
-                    lines.Add(line);
-                    line = reader.ReadLine();
-                    c++;
                 }
             }
-
-            // Rewrite the lines into the file
-            using (var fileStream = new StreamWriter(File.Open(mFilePath, FileMode.Create, FileAccess.ReadWrite, FileShare.ReadWrite), encoding: mConfiguration.FileEncoding))
-            {
-                // Write down only half of the lines (newer one)
-                for (int i = lines.Count / 2; i < lines.Count; i++)
-                    fileStream.WriteLine(lines[i]);
-            }
-
-            // Record the date of clean
-            LastFileCleanDate = DateTime.Now;
         }
-
     }
 }

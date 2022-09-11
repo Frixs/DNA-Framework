@@ -98,6 +98,9 @@ namespace Ixs.DNA
             // Add logging as default
             construction.Services.AddLogging(options =>
             {
+                // Default to debug level
+                options.SetMinimumLevel(LogLevel.Debug);
+
                 // Setup loggers from configuration
                 options.AddConfiguration(construction.Configuration.GetSection("Logging"));
 
