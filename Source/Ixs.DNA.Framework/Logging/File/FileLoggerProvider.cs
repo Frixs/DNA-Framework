@@ -4,24 +4,24 @@ using System.Collections.Concurrent;
 namespace Ixs.DNA
 {
     /// <summary>
-    /// Provides the ability to log to file
+    ///     Provides the ability to log to file
     /// </summary>
     public class FileLoggerProvider : ILoggerProvider
     {
         #region Protected Members
 
         /// <summary>
-        /// The path to log to
+        ///     The path to log to
         /// </summary>
         protected string mFilePath;
 
         /// <summary>
-        /// The configuration to use when creating loggers
+        ///     The configuration to use when creating loggers
         /// </summary>
         protected readonly FileLoggerConfiguration mConfiguration;
 
         /// <summary>
-        /// Keeps track of the loggers already created
+        ///     Keeps track of the loggers already created
         /// </summary>
         protected readonly ConcurrentDictionary<string, FileLogger> mLoggers = new ConcurrentDictionary<string, FileLogger>();
 
@@ -30,7 +30,7 @@ namespace Ixs.DNA
         #region Constructor
 
         /// <summary>
-        /// Default constructor
+        ///     Default constructor
         /// </summary>
         /// <param name="path">The path to log to</param>
         /// <param name="configuration">The configuration to use</param>
@@ -48,7 +48,7 @@ namespace Ixs.DNA
         #region ILoggerProvider Implementation
 
         /// <summary>
-        /// Creates a file logger based on the category name
+        ///     Creates a file logger based on the category name
         /// </summary>
         /// <param name="categoryName">The category name of this logger</param>
         /// <returns></returns>
@@ -59,7 +59,7 @@ namespace Ixs.DNA
         }
 
         /// <summary>
-        /// Dispose
+        ///     Dispose
         /// </summary>
         public void Dispose()
         {

@@ -5,7 +5,7 @@ using static Ixs.DNA.FrameworkDI;
 namespace Ixs.DNA
 {
     /// <summary>
-    /// The main entry point into the Dna Framework library
+    ///     The main entry point into the Dna Framework library
     /// </summary>
     /// <remarks>
     /// <para>
@@ -25,8 +25,8 @@ namespace Ixs.DNA
         #region Public Properties
 
         /// <summary>
-        /// The framework construction used in this application.
-        /// NOTE: This should be set by the consuming application at the very start of the program
+        ///     The framework construction used in this application.
+        ///     NOTE: This should be set by the consuming application at the very start of the program
         /// </summary>
         /// <example>
         /// <code>
@@ -36,7 +36,7 @@ namespace Ixs.DNA
         public static FrameworkConstruction Construction { get; private set; }
 
         /// <summary>
-        /// The dependency injection service provider
+        ///     The dependency injection service provider
         /// </summary>
         public static IServiceProvider Provider => Construction?.Provider;
 
@@ -45,8 +45,8 @@ namespace Ixs.DNA
         #region Extension Methods
 
         /// <summary>
-        /// Should be called once a Framework Construction is finished and we want to build it and
-        /// start our application
+        ///     Should be called once a Framework Construction is finished and we want to build it and
+        ///     start our application
         /// </summary>
         /// <param name="construction">The construction</param>
         /// <param name="logStarted">Specifies if the Dna Framework Started message should be logged</param>
@@ -61,9 +61,9 @@ namespace Ixs.DNA
         }
 
         /// <summary>
-        /// Should be called once a Framework Construction is finished and we want to build it and
-        /// start our application in a hosted environment where the service provider is already built
-        /// such as ASP.Net Core applications
+        ///     Should be called once a Framework Construction is finished and we want to build it and
+        ///     start our application in a hosted environment where the service provider is already built
+        ///     such as ASP.Net Core applications
         /// </summary>
         /// <param name="provider">The provider</param>
         /// <param name="logStarted">Specifies if the Dna Framework Started message should be logged</param>
@@ -78,7 +78,7 @@ namespace Ixs.DNA
         }
 
         /// <summary>
-        /// The initial call to setting up and using the Dna Framework
+        ///     The initial call to setting up and using the Dna Framework
         /// </summary>
         /// <typeparam name="T">The type of construction to use</typeparam>
         public static FrameworkConstruction Construct<T>()
@@ -92,7 +92,7 @@ namespace Ixs.DNA
 
 
         /// <summary>
-        /// The initial call to setting up and using the Dna Framework.
+        ///     The initial call to setting up and using the Dna Framework.
         /// </summary>
         /// <typeparam name="T">The type of construction to use</typeparam>
         /// <param name="constructionInstance">The instance of the construction to use</param>
@@ -107,7 +107,7 @@ namespace Ixs.DNA
         }
 
         /// <summary>
-        /// Shortcut to Framework.Provider.GetService to get an injected service of type <typeparamref name="T"/>
+        ///     Shortcut to Framework.Provider.GetService to get an injected service of type <typeparamref name="T"/>
         /// </summary>
         /// <typeparam name="T">The type of service to get</typeparam>
         /// <returns></returns>

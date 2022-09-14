@@ -4,12 +4,12 @@ using System.IO;
 namespace Ixs.DNA
 {
     /// <summary>
-    /// Extension methods for reflection methods
+    ///     Extension methods for reflection methods
     /// </summary>
     public static class ReflectionExtensions
     {
         /// <summary>
-        /// Gets the physical file location of the assembly where this type is stored
+        ///     Gets the physical file location of the assembly where this type is stored
         /// </summary>
         /// <param name="type">The type</param>
         /// <returns>Returns the file location of the assembly in which this type is stored</returns>
@@ -19,7 +19,7 @@ namespace Ixs.DNA
         }
 
         /// <summary>
-        /// Gets the physical folder location of the assembly where this type is stored
+        ///     Gets the physical folder location of the assembly where this type is stored
         /// </summary>
         /// <param name="type">The type</param>
         /// <returns>Returns the folder location of the assembly file in which this type is stored</returns>

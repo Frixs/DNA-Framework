@@ -21,12 +21,12 @@ namespace Ixs.DNA
         #region Protected Members
 
         /// <summary>
-        /// A flag indicating if the worker task is still running
+        ///     A flag indicating if the worker task is still running
         /// </summary>
         protected ManualResetEvent mWorkerFinishedEvent = new ManualResetEvent(true);
 
         /// <summary>
-        /// The token used to cancel any ongoing work in order to shutdown
+        ///     The token used to cancel any ongoing work in order to shutdown
         /// </summary>
         protected CancellationTokenSource mCancellationToken = new CancellationTokenSource();
 
@@ -35,22 +35,22 @@ namespace Ixs.DNA
         #region Public Properties
 
         /// <summary>
-        /// A unique ID for locking the starting and stopping calls of this class
+        ///     A unique ID for locking the starting and stopping calls of this class
         /// </summary>
         public string LockingKey { get; set; } = nameof(SingleTaskWorker) + Guid.NewGuid().ToString("N");
 
         /// <summary>
-        /// The name that identifies this worker (used in unhandled exception logs to report source of an issue)
+        ///     The name that identifies this worker (used in unhandled exception logs to report source of an issue)
         /// </summary>
         public abstract string WorkerName { get; }
 
         /// <summary>
-        /// Indicates if the service is shutting down and should finish what it's doing and save any important information/progress
+        ///     Indicates if the service is shutting down and should finish what it's doing and save any important information/progress
         /// </summary>
         public bool Stopping => mCancellationToken.IsCancellationRequested;
 
         /// <summary>
-        /// Indicates if the main worker task is running
+        ///     Indicates if the main worker task is running
         /// </summary>
         public bool IsRunning
         {
@@ -74,11 +74,10 @@ namespace Ixs.DNA
         #region Constructor
 
         /// <summary>
-        /// Default constructor
+        ///     Default constructor
         /// </summary>
         public SingleTaskWorker()
         {
-
         }
 
         #endregion
@@ -86,7 +85,7 @@ namespace Ixs.DNA
         #region Startup / Shutdown
 
         /// <summary>
-        /// Starts the given task running if it is not already running
+        ///     Starts the given task running if it is not already running
         /// </summary>
         /// <returns></returns>
         public Task<bool> StartAsync()
@@ -125,7 +124,7 @@ namespace Ixs.DNA
         }
 
         /// <summary>
-        /// Requests that the given task should stop running, and awaits for it to finish
+        ///     Requests that the given task should stop running, and awaits for it to finish
         /// </summary>
         /// <returns>Returns once the worker task has returned</returns>
         public Task StopAsync()
@@ -159,7 +158,7 @@ namespace Ixs.DNA
         #region Worker Task
 
         /// <summary>
-        /// Runs the worker task and sets the IsRunning to false once complete
+        ///     Runs the worker task and sets the IsRunning to false once complete
         /// </summary>
         /// <returns>Returns once the worker task has completed</returns>
         protected void RunWorkerTaskNoAwait()
@@ -197,7 +196,7 @@ namespace Ixs.DNA
         }
 
         /// <summary>
-        /// The task that will be run by this worker
+        ///     The task that will be run by this worker
         /// </summary>
         protected virtual Task WorkerTaskAsync(CancellationToken cancellationToken)
         {

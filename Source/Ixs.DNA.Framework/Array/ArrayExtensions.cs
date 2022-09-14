@@ -3,12 +3,12 @@
 namespace Ixs.DNA
 {
     /// <summary>
-    /// Extension methods for arrays
+    ///     Extension methods for arrays
     /// </summary>
     public static class ArrayExtensions
     {
         /// <summary>
-        /// Append the given objects to the original source array
+        ///     Append the given objects to the original source array
         /// </summary>
         /// <typeparam name="T">The type of array</typeparam>
         /// <param name="source">The original array of values</param>
@@ -21,7 +21,7 @@ namespace Ixs.DNA
         }
 
         /// <summary>
-        /// Prepend the given objects to the original source array
+        ///     Prepend the given objects to the original source array
         /// </summary>
         /// <typeparam name="T">The type of array</typeparam>
         /// <param name="source">The original array of values</param>

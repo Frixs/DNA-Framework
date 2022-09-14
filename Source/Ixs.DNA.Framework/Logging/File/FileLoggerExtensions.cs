@@ -5,12 +5,12 @@ using System.Text;
 namespace Ixs.DNA
 {
     /// <summary>
-    /// Extension methods for the <see cref="FileLogger"/>
+    ///     Extension methods for the <see cref="FileLogger"/>
     /// </summary>
     public static class FileLoggerExtensions
     {
         /// <summary>
-        /// Adds a new file logger to the specific path
+        ///     Adds a new file logger to the specific path
         /// </summary>
         /// <param name="builder">The log builder to add to</param>
         /// <param name="logPath">The path of the folder to log to</param>
@@ -29,7 +29,7 @@ namespace Ixs.DNA
         }
 
         /// <summary>
-        /// Injects a file logger into the framework construction
+        ///     Injects a file logger into the framework construction
         /// </summary>
         /// <param name="construction">The construction</param>
         /// <param name="logPath">The path of the folder to log to</param>

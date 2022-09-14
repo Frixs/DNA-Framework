@@ -1,17 +1,17 @@
 ﻿namespace Ixs.DNA
 {
     /// <summary>
-    /// Known types of content that can be serialized and sent to a receiver
+    ///     Known types of content that can be serialized and sent to a receiver
     /// </summary>
     public enum KnownContentSerializers
     {
         /// <summary>
-        /// The data should be serialized to JSON
+        ///     The data should be serialized to JSON
         /// </summary>
         Json = 1,
 
         /// <summary>
-        /// The data should be serialized to XML
+        ///     The data should be serialized to XML
         /// </summary>
         Xml
     }

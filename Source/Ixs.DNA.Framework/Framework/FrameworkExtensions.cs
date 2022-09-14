@@ -8,14 +8,14 @@ using System.Reflection;
 namespace Ixs.DNA
 {
     /// <summary>
-    /// Extension methods for the Dna Framework
+    ///     Extension methods for the Dna Framework
     /// </summary>
     public static class FrameworkExtensions
     {
         #region Configuration
 
         /// <summary>
-        /// Configures a framework construction in the default way
+        ///     Configures a framework construction in the default way
         /// </summary>
         /// <param name="construction">The construction to configure</param>
         /// <param name="configure">The custom configuration action</param>
@@ -75,7 +75,7 @@ namespace Ixs.DNA
         #endregion
 
         /// <summary>
-        /// Injects all of the default services used by Dna Framework for a quicker and cleaner setup
+        ///     Injects all of the default services used by Dna Framework for a quicker and cleaner setup
         /// </summary>
         /// <param name="construction">The construction</param>
         /// <returns></returns>
@@ -89,7 +89,7 @@ namespace Ixs.DNA
         }
 
         /// <summary>
-        /// Injects the default logger into the framework construction
+        ///     Injects the default logger into the framework construction
         /// </summary>
         /// <param name="construction">The construction</param>
         /// <returns></returns>

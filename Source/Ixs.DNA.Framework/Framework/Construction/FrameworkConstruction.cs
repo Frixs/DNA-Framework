@@ -5,14 +5,14 @@ using System;
 namespace Ixs.DNA
 {
     /// <summary>
-    /// The construction information when starting up and configuring Dna.Framework
+    ///     The construction information when starting up and configuring Dna.Framework
     /// </summary>
     public class FrameworkConstruction
     {
         #region Protected Members
 
         /// <summary>
-        /// The services that will get used and compiled once the framework is built
+        ///     The services that will get used and compiled once the framework is built
         /// </summary>
         protected IServiceCollection mServices;
 
@@ -21,12 +21,12 @@ namespace Ixs.DNA
         #region Public Properties
 
         /// <summary>
-        /// The dependency injection service provider
+        ///     The dependency injection service provider
         /// </summary>
         public IServiceProvider Provider { get; protected set; }
 
         /// <summary>
-        /// The services that will get used and compiled once the framework is built
+        ///     The services that will get used and compiled once the framework is built
         /// </summary>
         public IServiceCollection Services
         {
@@ -44,12 +44,12 @@ namespace Ixs.DNA
         }
 
         /// <summary>
-        /// The environment used for the Dna.Framework
+        ///     The environment used for the Dna.Framework
         /// </summary>
         public IFrameworkEnvironment Environment { get; protected set; }
 
         /// <summary>
-        /// The configuration used for the Dna.Framework
+        ///     The configuration used for the Dna.Framework
         /// </summary>
          public IConfiguration Configuration { get; protected set; }
 
@@ -58,7 +58,7 @@ namespace Ixs.DNA
         #region Constructor
 
         /// <summary>
-        /// Default constructor
+        ///     Default constructor
         /// </summary>
         /// <param name="createServiceCollection">If true, a new <see cref="ServiceCollection"/> will be created for the Services</param>
         public FrameworkConstruction(bool createServiceCollection = true)
@@ -77,7 +77,7 @@ namespace Ixs.DNA
         #region Build Methods
 
         /// <summary>
-        /// Builds the service collection into a service provider
+        ///     Builds the service collection into a service provider
         /// </summary>
         public void Build(IServiceProvider provider = null)
         {
@@ -90,9 +90,9 @@ namespace Ixs.DNA
         #region Hosted Environment Methods
 
         /// <summary>
-        /// Uses the given service collection in the framework. 
-        /// Typically used in an ASP.Net Core environment where
-        /// the ASP.Net server has its own collection.
+        ///     Uses the given service collection in the framework. 
+        ///     Typically used in an ASP.Net Core environment where
+        ///     the ASP.Net server has its own collection.
         /// </summary>
         /// <param name="services">The services to use</param>
         /// <returns></returns>
@@ -106,7 +106,7 @@ namespace Ixs.DNA
         }
 
         /// <summary>
-        /// Uses the given configuration in the framework
+        ///     Uses the given configuration in the framework
         /// </summary>
         /// <param name="configuration">The configuration to use</param>
         /// <returns></returns>

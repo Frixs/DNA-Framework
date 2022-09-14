@@ -33,7 +33,7 @@ namespace Ixs.DNA
         }
 
         /// <summary>
-        /// Get N lines from the beginning of the string.
+        ///     Get N lines from the beginning of the string.
         /// </summary>
         /// <param name="content">The string</param>
         /// <param name="nLines">Number of lines affected</param>

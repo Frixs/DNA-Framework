@@ -4,8 +4,8 @@ using System;
 namespace Ixs.DNA
 {
     /// <summary>
-    /// Creates a default framework construction containing all 
-    /// the default configuration and services
+    ///     Creates a default framework construction containing all 
+    ///     the default configuration and services
     /// </summary>
     /// <example>
     /// 

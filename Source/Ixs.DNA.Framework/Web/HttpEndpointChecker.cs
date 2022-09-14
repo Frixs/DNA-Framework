@@ -6,25 +6,25 @@ using System.Threading.Tasks;
 namespace Ixs.DNA
 {
     /// <summary>
-    /// Continually hits up a web HTTP/HTTPS endpoint checking for a valid response.
-    /// Good use for checking the connectivity of a website constantly
+    ///     Continually hits up a web HTTP/HTTPS endpoint checking for a valid response.
+    ///     Good use for checking the connectivity of a website constantly
     /// </summary>
     public class HttpEndpointChecker : IDisposable
     {
         #region Protected Members
 
         /// <summary>
-        /// Flag indicating if this class is disposing
+        ///     Flag indicating if this class is disposing
         /// </summary>
         protected bool mDisposing;
 
         /// <summary>
-        /// The callback that is called when the connectivity state changes
+        ///     The callback that is called when the connectivity state changes
         /// </summary>
         protected Action<bool> mStateChangedCallback;
 
         /// <summary>
-        /// Indicates if there has been a call to the endpoint yet or if this is the first call
+        ///     Indicates if there has been a call to the endpoint yet or if this is the first call
         /// </summary>
         protected bool mFirstCallMade;
 
@@ -33,19 +33,19 @@ namespace Ixs.DNA
         #region Public Properties
 
         /// <summary>
-        /// The endpoint being checked
+        ///     The endpoint being checked
         /// </summary>
         public string Endpoint { get; protected set; }
 
         /// <summary>
-        /// Indicates if the endpoint is responsive (at the last interval returned a valid response)
+        ///     Indicates if the endpoint is responsive (at the last interval returned a valid response)
         /// </summary>
         public bool Responsive { get; set; } = true;
 
         #endregion
 
         /// <summary>
-        /// Default constructor
+        ///     Default constructor
         /// </summary>
         /// <param name="endpoint">The endpoint to do a GET call on</param>
         /// <param name="interval">The time between periodical checks, in milliseconds</param>
@@ -129,7 +129,7 @@ namespace Ixs.DNA
         #region Dispose
 
         /// <summary>
-        /// Disposes the task that runs the periodic connectivity check
+        ///     Disposes the task that runs the periodic connectivity check
         /// </summary>
         public void Dispose()
         {

@@ -4,16 +4,16 @@ using System.Net;
 namespace Ixs.DNA
 {
     /// <summary>
-    /// Extension methods for <see cref="HttpWebResponse"/>
+    ///     Extension methods for <see cref="HttpWebResponse"/>
     /// </summary>
     public static class HttpWebResponseExtensions
     {
         /// <summary>
-        /// Returns a <see cref="WebRequestResult{T}"/> pre-populated with the <see cref="HttpWebResponse"/> information
+        ///     Returns a <see cref="WebRequestResult{T}"/> pre-populated with the <see cref="HttpWebResponse"/> information
         /// </summary>
         /// <typeparam name="TResponse">The type of response to create</typeparam>
         /// <param name="serverResponse">The server response</param>
-        /// <returns></returns>
+        /// TODO <returns></returns>
         public static WebRequestResult<TResponse> CreateWebRequestResult<TResponse>(this HttpWebResponse serverResponse)
         {
             // Return a new web request result
@@ -40,13 +40,14 @@ namespace Ixs.DNA
             {
                 // Open the response stream...
                 using (var responseStream = serverResponse.GetResponseStream())
-                // Get a stream reader...
-                using (var streamReader = new StreamReader(responseStream))
-                    // Read in the response body
-                    // NOTE: By reading to the end of the stream
-                    //       The stream will also close for us
-                    //       (which we must do to release the request)
-                    result.RawServerResponse = streamReader.ReadToEnd();
+                    if (responseStream != null)
+                        // Get a stream reader...
+                        using (var streamReader = new StreamReader(responseStream))
+                            // Read in the response body
+                            // NOTE: By reading to the end of the stream
+                            //       The stream will also close for us
+                            //       (which we must do to release the request)
+                            result.RawServerResponse = streamReader.ReadToEnd();
             }
 
             return result;

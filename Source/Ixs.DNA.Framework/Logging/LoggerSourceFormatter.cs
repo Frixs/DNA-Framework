@@ -1,16 +1,15 @@
-﻿using Microsoft.Extensions.Logging;
-using System;
+﻿using System;
 using System.IO;
 
 namespace Ixs.DNA
 {
     /// <summary>
-    /// Formats a message when the callers source information is provided first in the arguments
+    ///     Formats a message when the callers source information is provided first in the arguments
     /// </summary>
     public static class LoggerSourceFormatter
     {
         /// <summary>
-        /// Formats the message including the source information pulled out of the state
+        ///     Formats the message including the source information pulled out of the state
         /// </summary>
         /// <param name="state">The state information about the log</param>
         /// <param name="exception">The exception</param>

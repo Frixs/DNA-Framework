@@ -10,12 +10,12 @@ using System.Xml.Serialization;
 namespace Ixs.DNA
 {
     /// <summary>
-    /// Provides HTTP calls for sending and receiving information from a HTTP server
+    ///     Provides HTTP calls for sending and receiving information from a HTTP server
     /// </summary>
     public static class WebRequests
     {
         /// <summary>
-        /// GETs a web request to an URL and returns the raw http web response
+        ///     GETs a web request to an URL and returns the raw http web response
         /// </summary>
         /// <remarks>IMPORTANT: Remember to close the returned <see cref="HttpWebResponse"/> stream once done</remarks>
         /// <param name="url">The URL</param>
@@ -63,7 +63,7 @@ namespace Ixs.DNA
         }
 
         /// <summary>
-        /// POSTs a web request to an URL and returns the raw http web response
+        ///     POSTs a web request to an URL and returns the raw http web response
         /// </summary>
         /// <remarks>IMPORTANT: Remember to close the returned <see cref="HttpWebResponse"/> stream once done</remarks>
         /// <param name="url">The URL</param>
@@ -183,7 +183,7 @@ namespace Ixs.DNA
         }
 
         /// <summary>
-        /// POSTs a web request to an URL and returns a response of the expected data type
+        ///     POSTs a web request to an URL and returns a response of the expected data type
         /// </summary>
         /// <param name="url">The URL</param>
         /// <param name="content">The content to post</param>

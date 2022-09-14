@@ -1,12 +1,12 @@
 ﻿namespace Ixs.DNA
 {
     /// <summary>
-    /// Extension methods for <see cref="KnownContentSerializers"/>
+    ///     Extension methods for <see cref="KnownContentSerializers"/>
     /// </summary>
     public static class KnownContentSerializersExtensions
     {
         /// <summary>
-        /// Takes a known serializer type and returns the Mime type associated with it
+        ///     Takes a known serializer type and returns the Mime type associated with it
         /// </summary>
         /// <param name="serializer">The serializer</param>
         /// <returns></returns>

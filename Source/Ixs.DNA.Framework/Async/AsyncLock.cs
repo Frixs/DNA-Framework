@@ -23,19 +23,19 @@ namespace Ixs.DNA
         #region Private Members
 
         /// <summary>
-        /// A semaphore to lock the semaphore list
+        ///     A semaphore to lock the semaphore list
         /// </summary>
         private static SemaphoreSlim SelfLock = new SemaphoreSlim(1, 1);
 
         /// <summary>
-        /// A list of all semaphore locks (one per key)
+        ///     A list of all semaphore locks (one per key)
         /// </summary>
         private static Dictionary<string, SemaphoreDetails> Semaphores = new Dictionary<string, SemaphoreDetails>();
 
         #endregion
 
         /// <summary>
-        /// Awaits for any outstanding tasks to complete that are accessing the same key then runs the given task, returning it's value
+        ///     Awaits for any outstanding tasks to complete that are accessing the same key then runs the given task, returning it's value
         /// </summary>
         /// <param name="key">The key to await</param>
         /// <param name="task">The task to perform inside of the semaphore lock</param>
@@ -97,7 +97,7 @@ namespace Ixs.DNA
         }
 
         /// <summary>
-        /// Awaits for any outstanding tasks to complete that are accessing the same key then runs the given task
+        ///     Awaits for any outstanding tasks to complete that are accessing the same key then runs the given task
         /// </summary>
         /// <param name="key">The key to await</param>
         /// <param name="task">The task to perform inside of the semaphore lock</param>
@@ -119,7 +119,7 @@ namespace Ixs.DNA
         }
 
         /// <summary>
-        /// Awaits for any outstanding tasks to complete that are accessing the same key then runs the given action
+        ///     Awaits for any outstanding tasks to complete that are accessing the same key then runs the given action
         /// </summary>
         /// <param name="key">The key to await</param>
         /// <param name="task">The task to perform inside of the semaphore lock</param>
@@ -141,7 +141,7 @@ namespace Ixs.DNA
         }
 
         /// <summary>
-        /// Awaits for any outstanding tasks to complete that are accessing the same key then runs the given task, returning it's value
+        ///     Awaits for any outstanding tasks to complete that are accessing the same key then runs the given task, returning it's value
         /// </summary>
         /// <param name="key">The key to await</param>
         /// <param name="task">The task to perform inside of the semaphore lock</param>

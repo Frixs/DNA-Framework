@@ -5,12 +5,12 @@ using System.Threading.Tasks;
 namespace Ixs.DNA
 {
     /// <summary>
-    /// Extension methods for <see cref="WaitHandle"/> objects
+    ///     Extension methods for <see cref="WaitHandle"/> objects
     /// </summary>
     public static class WaitHandleExtensions
     {
         /// <summary>
-        /// Allows awaiting a <see cref="WaitHandle"/>
+        ///     Allows awaiting a <see cref="WaitHandle"/>
         /// </summary>
         /// <param name="handle">The handle to await</param>
         /// <param name="millisecondsTimeout">The timeout period to return false if timed out</param>
@@ -64,7 +64,7 @@ namespace Ixs.DNA
         }
 
         /// <summary>
-        /// Allows awaiting a <see cref="WaitHandle"/>
+        ///     Allows awaiting a <see cref="WaitHandle"/>
         /// </summary>
         /// <param name="handle">The handle to await</param>
         /// <param name="timeout">The timeout period to return false if timed out</param>
@@ -77,7 +77,7 @@ namespace Ixs.DNA
         }
 
         /// <summary>
-        /// Allows awaiting a <see cref="WaitHandle"/>
+        ///     Allows awaiting a <see cref="WaitHandle"/>
         /// </summary>
         /// <param name="handle">The handle to await</param>
         /// <param name="cancellationToken">The cancellation token to use to throw a <see cref="TaskCanceledException"/> if this token gets canceled</param>

@@ -1,10 +1,10 @@
 ﻿namespace Ixs.DNA
 {
     /// <summary>
-    /// Creates a default framework construction containing all 
-    /// the default configuration and services, when used inside
-    /// a project that has it's own service provider such as an
-    /// ASP.Net Core website
+    ///     Creates a default framework construction containing all 
+    ///     the default configuration and services, when used inside
+    ///     a project that has it's own service provider such as an
+    ///     ASP.Net Core website
     /// </summary>
     /// <example>
     /// 
@@ -51,7 +51,7 @@
         #region Constructor
 
         /// <summary>
-        /// Default constructor
+        ///     Default constructor
         /// </summary>
         public HostedFrameworkConstruction() : base(createServiceCollection: false)
         {

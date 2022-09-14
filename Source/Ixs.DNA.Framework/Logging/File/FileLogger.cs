@@ -6,19 +6,19 @@ using System.IO;
 namespace Ixs.DNA
 {
     /// <summary>
-    /// A logger that writes the logs to file
+    ///     A logger that writes the logs to file
     /// </summary>
     public class FileLogger : ILogger
     {
         #region Static Properties
 
         /// <summary>
-        /// A list of file locks based on path
+        ///     A list of file locks based on path
         /// </summary>
         protected static ConcurrentDictionary<string, object> FileLocks = new ConcurrentDictionary<string, object>();
 
         /// <summary>
-        /// The lock to lock the list of locks
+        ///     The lock to lock the list of locks
         /// </summary>
         protected static object FileLockLock = new object();
 
@@ -27,17 +27,17 @@ namespace Ixs.DNA
         #region Protected Members
 
         /// <summary>
-        /// The category for this logger
+        ///     The category for this logger
         /// </summary>
         protected readonly string mCategoryName;
 
         /// <summary>
-        /// The file path to write to
+        ///     The file path to write to
         /// </summary>
         protected readonly string mLogPath;
 
         /// <summary>
-        /// The configuration to use
+        ///     The configuration to use
         /// </summary>
         protected FileLoggerConfiguration mConfiguration;
 
@@ -46,7 +46,7 @@ namespace Ixs.DNA
         #region Constructor
 
         /// <summary>
-        /// Default constructor
+        ///     Default constructor
         /// </summary>
         /// <param name="categoryName">The category for this logger</param>
         /// <param name="logPath">The path of the folder to log to</param>
@@ -62,7 +62,7 @@ namespace Ixs.DNA
         #endregion
 
         /// <summary>
-        /// File loggers are not scoped so this is always null
+        ///     File loggers are not scoped so this is always null
         /// </summary>
         /// <typeparam name="TState"></typeparam>
         /// <param name="state"></param>
@@ -73,7 +73,7 @@ namespace Ixs.DNA
         }
 
         /// <summary>
-        /// Enabled if the log level is the same or greater than the configuration
+        ///     Enabled if the log level is the same or greater than the configuration
         /// </summary>
         /// <param name="logLevel">The log level to check against</param>
         /// <returns></returns>
@@ -84,7 +84,7 @@ namespace Ixs.DNA
         }
 
         /// <summary>
-        /// Logs the message to file
+        ///     Logs the message to file
         /// </summary>
         /// <typeparam name="TState">The type of the details of the message</typeparam>
         /// <param name="logLevel">The log level</param>

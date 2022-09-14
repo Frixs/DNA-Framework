@@ -5,12 +5,12 @@ using System.Reflection;
 namespace Ixs.DNA
 {
     /// <summary>
-    /// A helper for expressions.
+    ///     A helper for expressions.
     /// </summary>
     public static class ExpressionHelpers
     {
         /// <summary>
-        /// Compiles an expression and gets the functions return value.
+        ///     Compiles an expression and gets the functions return value.
         /// </summary>
         /// <typeparam name="T">The type of return value.</typeparam>
         /// <param name="lambda">The expression to compile.</param>
@@ -21,7 +21,7 @@ namespace Ixs.DNA
         }
 
         /// <summary>
-        /// Compiles an expression and gets the functions return value
+        ///     Compiles an expression and gets the functions return value
         /// </summary>
         /// <typeparam name="T">The type of return value</typeparam>
         /// <typeparam name="In">The input to the expression</typeparam>
@@ -34,7 +34,7 @@ namespace Ixs.DNA
         }
 
         /// <summary>
-        /// Sets the underlying properties value to the given value from an expresion that contains the property.
+        ///     Sets the underlying properties value to the given value from an expresion that contains the property.
         /// </summary>
         /// <typeparam name="T">The type of value to set.</typeparam>
         /// <param name="lambda">The expression.</param>
@@ -53,8 +53,8 @@ namespace Ixs.DNA
         }
 
         /// <summary>
-        /// Sets the underlying properties value to the given value
-        /// from an expression that contains the property
+        ///     Sets the underlying properties value to the given value
+        ///     from an expression that contains the property
         /// </summary>
         /// <typeparam name="T">The type of value to set</typeparam>
         /// <typeparam name="In">The input to the expression</typeparam>

@@ -5,12 +5,12 @@ using System.Runtime.CompilerServices;
 namespace Ixs.DNA
 {
     /// <summary>
-    /// Extensions for <see cref="ILogger"/> loggers
+    ///     Extensions for <see cref="ILogger"/> loggers
     /// </summary>
     public static class LoggerExtensions
     {
         /// <summary>
-        /// Logs a verbose trace message, including the source of the log
+        ///     Logs a verbose trace message, including the source of the log
         /// </summary>
         /// <param name="logger">The logger</param>
         /// <param name="message">The message</param>
@@ -32,7 +32,7 @@ namespace Ixs.DNA
             ) => logger?.Log(LogLevel.Trace, eventId, args.Prepend(origin, filePath, lineNumber, message, LogLevel.Trace), exception, LoggerSourceFormatter.Format);
 
         /// <summary>
-        /// Logs a debug message, including the source of the log
+        ///     Logs a debug message, including the source of the log
         /// </summary>
         /// <param name="logger">The logger</param>
         /// <param name="message">The message</param>
@@ -54,7 +54,7 @@ namespace Ixs.DNA
             ) => logger?.Log(LogLevel.Debug, eventId, args.Prepend(origin, filePath, lineNumber, message, LogLevel.Debug), exception, LoggerSourceFormatter.Format);
 
         /// <summary>
-        /// Logs an informative message, including the source of the log
+        ///     Logs an informative message, including the source of the log
         /// </summary>
         /// <param name="logger">The logger</param>
         /// <param name="message">The message</param>
@@ -76,7 +76,7 @@ namespace Ixs.DNA
             ) => logger?.Log(LogLevel.Information, eventId, args.Prepend(origin, filePath, lineNumber, message, LogLevel.Information), exception, LoggerSourceFormatter.Format);
 
         /// <summary>
-        /// Logs a warning message, including the source of the log
+        ///     Logs a warning message, including the source of the log
         /// </summary>
         /// <param name="logger">The logger</param>
         /// <param name="message">The message</param>
@@ -98,7 +98,7 @@ namespace Ixs.DNA
             ) => logger?.Log(LogLevel.Warning, eventId, args.Prepend(origin, filePath, lineNumber, message, LogLevel.Warning), exception, LoggerSourceFormatter.Format);
 
         /// <summary>
-        /// Logs an error message, including the source of the log
+        ///     Logs an error message, including the source of the log
         /// </summary>
         /// <param name="logger">The logger</param>
         /// <param name="message">The message</param>
@@ -120,7 +120,7 @@ namespace Ixs.DNA
             ) => logger?.Log(LogLevel.Error, eventId, args.Prepend(origin, filePath, lineNumber, message, LogLevel.Error), exception, LoggerSourceFormatter.Format);
 
         /// <summary>
-        /// Logs a critical (fatal) message, including the source of the log
+        ///     Logs a critical (fatal) message, including the source of the log
         /// </summary>
         /// <param name="logger">The logger</param>
         /// <param name="message">The message</param>
