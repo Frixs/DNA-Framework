@@ -1,7 +1,8 @@
-﻿using System;
+﻿using Microsoft.Extensions.Logging;
+using System;
 using System.Collections.Concurrent;
 using System.IO;
-using Microsoft.Extensions.Logging;
+using System.Reflection;
 
 namespace Ixs.DNA.Logging.File
 {
@@ -49,14 +50,16 @@ namespace Ixs.DNA.Logging.File
         ///     Default constructor
         /// </summary>
         /// <param name="categoryName">The category for this logger</param>
-        /// <param name="logPath">The path of the folder to log to</param>
+        /// <param name="logPath">The path of the folder to log to (relative (not rooted) to dir of executable or absolute path)</param>
         /// <param name="configuration">The configuration to use</param>
         public FileLogger(string categoryName, string logPath, FileLoggerConfiguration configuration)
         {
             // Set members
             mCategoryName = categoryName;
-            mLogPath = Path.GetFullPath(logPath); // Get absolute path
             mConfiguration = configuration;
+            mLogPath = Path.IsPathRooted(logPath) 
+                ? logPath // already absolute path (rooted)
+                : Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) ?? string.Empty, logPath); // get absolute
         }
 
         #endregion

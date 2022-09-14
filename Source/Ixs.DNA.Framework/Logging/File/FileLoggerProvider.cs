@@ -32,7 +32,7 @@ namespace Ixs.DNA.Logging.File
         /// <summary>
         ///     Default constructor
         /// </summary>
-        /// <param name="path">The path to log to</param>
+        /// <param name="path">The path of the folder to log to (relative (not rooted) to dir of executable or absolute path)</param>
         /// <param name="configuration">The configuration to use</param>
         public FileLoggerProvider(string path, FileLoggerConfiguration configuration)
         {
