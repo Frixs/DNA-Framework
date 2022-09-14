@@ -1,13 +1,14 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.IO;
 using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
+using Ixs.DNA.Web.Constants;
+using Newtonsoft.Json;
 
-namespace Ixs.DNA
+namespace Ixs.DNA.Web
 {
     /// <summary>
     ///     Provides HTTP calls for sending and receiving information from a HTTP server
