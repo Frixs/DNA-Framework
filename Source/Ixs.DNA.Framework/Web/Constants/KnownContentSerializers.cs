@@ -1,4 +1,4 @@
-﻿namespace Ixs.DNA
+﻿namespace Ixs.DNA.Web.Constants
 {
     /// <summary>
     ///     Known types of content that can be serialized and sent to a receiver

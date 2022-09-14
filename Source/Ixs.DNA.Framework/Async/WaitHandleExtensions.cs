@@ -2,7 +2,7 @@
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Ixs.DNA
+namespace Ixs.DNA.Async
 {
     /// <summary>
     ///     Extension methods for <see cref="WaitHandle"/> objects

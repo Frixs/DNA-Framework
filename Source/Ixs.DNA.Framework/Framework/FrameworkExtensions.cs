@@ -55,7 +55,7 @@ namespace Ixs.DNA
         }
 
         /// <summary>
-        /// Configures a framework construction using the provided configuration
+        ///     Configures a framework construction using the provided configuration
         /// </summary>
         /// <param name="construction">The construction to configure</param>
         /// <param name="configuration">The configuration</param>
@@ -113,7 +113,7 @@ namespace Ixs.DNA
 
             // Adds a default logger so that we can get a non-generic ILogger
             // that will have the category name of "Ixs.DNA"
-            construction.Services.AddTransient(provider => provider.GetService<ILoggerFactory>().CreateLogger("Ixs.DNA (Framework)"));
+            construction.Services.AddTransient(provider => provider.GetService<ILoggerFactory>()?.CreateLogger("Ixs.DNA (Framework)"));
 
             // Chain the construction
             return construction;

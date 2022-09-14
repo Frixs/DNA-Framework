@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Threading;
 using System.Threading.Tasks;
+using Ixs.DNA.Async;
+using Ixs.DNA.Logging;
 using static Ixs.DNA.FrameworkDI;
 
-namespace Ixs.DNA
+namespace Ixs.DNA.Tasks
 {
     /// <summary>
     /// <para>

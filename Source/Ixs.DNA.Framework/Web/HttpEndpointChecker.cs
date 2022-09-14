@@ -1,9 +1,10 @@
-﻿using Microsoft.Extensions.Logging;
-using System;
+﻿using System;
 using System.Net;
 using System.Threading.Tasks;
+using Ixs.DNA.Logging;
+using Microsoft.Extensions.Logging;
 
-namespace Ixs.DNA
+namespace Ixs.DNA.Web
 {
     /// <summary>
     ///     Continually hits up a web HTTP/HTTPS endpoint checking for a valid response.

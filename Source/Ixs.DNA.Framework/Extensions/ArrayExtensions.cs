@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 
-namespace Ixs.DNA
+namespace Ixs.DNA.Extensions
 {
     /// <summary>
     ///     Extension methods for arrays

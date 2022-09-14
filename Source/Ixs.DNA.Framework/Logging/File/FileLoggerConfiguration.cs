@@ -1,7 +1,7 @@
-﻿using Microsoft.Extensions.Logging;
-using System.Text;
+﻿using System.Text;
+using Microsoft.Extensions.Logging;
 
-namespace Ixs.DNA
+namespace Ixs.DNA.Logging.File
 {
     /// <summary>
     ///     The configuration for a <see cref="FileLogger"/>

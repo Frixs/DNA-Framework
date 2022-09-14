@@ -2,8 +2,9 @@
 using System;
 using System.Collections.Concurrent;
 using System.IO;
+using System.Reflection;
 
-namespace Ixs.DNA
+namespace Ixs.DNA.Logging.File
 {
     /// <summary>
     ///     A logger that writes the logs to file
@@ -15,12 +16,12 @@ namespace Ixs.DNA
         /// <summary>
         ///     A list of file locks based on path
         /// </summary>
-        protected static ConcurrentDictionary<string, object> FileLocks = new ConcurrentDictionary<string, object>();
+        protected static ConcurrentDictionary<string, object> mFileLocks = new ConcurrentDictionary<string, object>();
 
         /// <summary>
         ///     The lock to lock the list of locks
         /// </summary>
-        protected static object FileLockLock = new object();
+        protected static object mFileLockLock = new object();
 
         #endregion
 
@@ -49,14 +50,16 @@ namespace Ixs.DNA
         ///     Default constructor
         /// </summary>
         /// <param name="categoryName">The category for this logger</param>
-        /// <param name="logPath">The path of the folder to log to</param>
+        /// <param name="logPath">The path of the folder to log to (relative (not rooted) to dir of executable or absolute path)</param>
         /// <param name="configuration">The configuration to use</param>
         public FileLogger(string categoryName, string logPath, FileLoggerConfiguration configuration)
         {
             // Set members
             mCategoryName = categoryName;
-            mLogPath = Path.GetFullPath(logPath); // Get absolute path
             mConfiguration = configuration;
+            mLogPath = Path.IsPathRooted(logPath) 
+                ? logPath // already absolute path (rooted)
+                : Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) ?? string.Empty, logPath); // get absolute
         }
 
         #endregion
@@ -117,7 +120,7 @@ namespace Ixs.DNA
 
             // Get dir info based on configuration
             string fileDirPath = mConfiguration.SingleLogFile
-                ? Path.GetDirectoryName(mLogPath) // single file
+                ? Path.GetDirectoryName(mLogPath) ?? string.Empty // single file
                 : Path.Combine(mLogPath, currentYearMonthString); // datetime file hierarchy
             
             // Get file info based on configuration
@@ -125,12 +128,12 @@ namespace Ixs.DNA
                 ? mLogPath // single file
                 : Path.Combine(fileDirPath, $"{dto:yyyy-MM-dd}.log"); // datetime file hierarchy
             
-            var fileLock = default(object);
+            object fileLock;
             // Double safety even though the FileLocks should be thread safe
-            lock (FileLockLock)
+            lock (mFileLockLock)
             {
                 // Get the file lock based on the absolute path
-                fileLock = FileLocks.GetOrAdd(normalizedLogPath, path => new object());
+                fileLock = mFileLocks.GetOrAdd(normalizedLogPath, path => new object());
             }
             // Lock the file
             lock (fileLock)
@@ -140,7 +143,7 @@ namespace Ixs.DNA
                     Directory.CreateDirectory(fileDirPath);
 
                 // Open the file
-                using (var fileStream = new StreamWriter(File.Open(filePath, FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.ReadWrite), encoding: mConfiguration.FileEncoding))
+                using (var fileStream = new StreamWriter(System.IO.File.Open(filePath, FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.ReadWrite), encoding: mConfiguration.FileEncoding))
                 {
                     // Go to end
                     fileStream.BaseStream.Seek(0, SeekOrigin.End);

@@ -2,7 +2,7 @@
 using Microsoft.Extensions.Logging;
 using System.Text;
 
-namespace Ixs.DNA
+namespace Ixs.DNA.Logging.File
 {
     /// <summary>
     ///     Extension methods for the <see cref="FileLogger"/>
@@ -13,7 +13,7 @@ namespace Ixs.DNA
         ///     Adds a new file logger to the specific path
         /// </summary>
         /// <param name="builder">The log builder to add to</param>
-        /// <param name="logPath">The path of the folder to log to</param>
+        /// <param name="logPath">The path of the folder to log to (relative (not rooted) to dir of executable or absolute path)</param>
         /// <param name="configuration">The configuration</param>
         public static ILoggingBuilder AddFile(this ILoggingBuilder builder, string logPath, FileLoggerConfiguration configuration = null)
         {
@@ -32,7 +32,7 @@ namespace Ixs.DNA
         ///     Injects a file logger into the framework construction
         /// </summary>
         /// <param name="construction">The construction</param>
-        /// <param name="logPath">The path of the folder to log to</param>
+        /// <param name="logPath">The path of the folder to log to (relative (not rooted) to dir of executable or absolute path)</param>
         /// <param name="logLevel">Log level start for logging</param>
         /// <param name="outputLogTime">Should time be logged?</param>
         /// <param name="outputLogLevel">Should log level be logged?</param>

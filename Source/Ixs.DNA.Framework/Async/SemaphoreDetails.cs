@@ -1,11 +1,11 @@
 ﻿using System.Threading;
 
-namespace Ixs.DNA
+namespace Ixs.DNA.Async
 {
     /// <summary>
     ///     Contains information about a semaphore lock
     /// </summary>
-    public class SemaphoreDetails
+    internal class SemaphoreDetails
     {
         #region Public Properties
 

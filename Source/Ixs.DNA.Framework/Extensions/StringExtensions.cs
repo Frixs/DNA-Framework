@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Text.RegularExpressions;
 
-namespace Ixs.DNA
+namespace Ixs.DNA.Extensions
 {
     /// <summary>
     ///     Extension methods for strings
@@ -14,10 +14,9 @@ namespace Ixs.DNA
         /// </summary>
         /// <param name="content">The string</param>
         /// <returns><see langword="true"/> = is URL, <see langword="false"/> otherwise</returns>
-        public static bool IsURL(this string content)
+        public static bool IsUrl(this string content)
         {
-            Uri uriResult;
-            return Uri.TryCreate(content, UriKind.Absolute, out uriResult) && (uriResult.Scheme == Uri.UriSchemeHttp || uriResult.Scheme == Uri.UriSchemeHttps);
+            return Uri.TryCreate(content, UriKind.Absolute, out var uriResult) && (uriResult.Scheme == Uri.UriSchemeHttp || uriResult.Scheme == Uri.UriSchemeHttps);
         }
 
         /// <summary>

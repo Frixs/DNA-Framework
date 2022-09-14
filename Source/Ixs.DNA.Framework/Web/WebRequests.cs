@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using Ixs.DNA.Web.Constants;
+using Newtonsoft.Json;
 using System;
 using System.IO;
 using System.Net;
@@ -7,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
 
-namespace Ixs.DNA
+namespace Ixs.DNA.Web
 {
     /// <summary>
     ///     Provides HTTP calls for sending and receiving information from a HTTP server
@@ -15,14 +16,16 @@ namespace Ixs.DNA
     public static class WebRequests
     {
         /// <summary>
-        ///     GETs a web request to an URL and returns the raw http web response
+        ///     GETs a web request to an URL and returns the raw http web response.
         /// </summary>
         /// <remarks>IMPORTANT: Remember to close the returned <see cref="HttpWebResponse"/> stream once done</remarks>
         /// <param name="url">The URL</param>
         /// <param name="configureRequest">Allows caller to customize and configure the request prior to the request being sent</param>
         /// <param name="bearerToken">If specified, provides the Authorization header with `bearer token-here` for things like JWT bearer tokens</param>
-        /// <returns></returns>
-        public static async Task<HttpWebResponse> GetAsync(string url, Action<HttpWebRequest> configureRequest = null, string bearerToken = null)
+        /// <returns>Returns <see cref="HttpWebResponse"/> wrapped in <see cref="Task"/>.</returns>
+        /// <exception cref="WebException">If there is no <see cref="HttpWebResponse"/> even in the exception response.</exception>
+        public static async Task<HttpWebResponse> GetAsync(string url,
+            Action<HttpWebRequest> configureRequest = null, string bearerToken = null)
         {
             #region Setup
 
@@ -41,7 +44,7 @@ namespace Ixs.DNA
             configureRequest?.Invoke(request);
 
             #endregion
-            
+
             // Wrap call...
             try
             {
@@ -63,6 +66,45 @@ namespace Ixs.DNA
         }
 
         /// <summary>
+        ///     GETs a web request to an URL and returns a response of the expected data type.
+        /// </summary>
+        /// <typeparam name="TResponse">The expected data type.</typeparam>
+        /// <param name="url">The URL</param>
+        /// <param name="returnType">The expected type of content to be returned from the server.</param>
+        /// <param name="configureRequest">Allows caller to customize and configure the request prior to the request being sent.</param>
+        /// <param name="bearerToken">If specified, provides the Authorization header with `bearer token-here` for things like JWT bearer tokens</param>
+        /// <returns>Returns request data with expected parsed response data wrapped in <see cref="Task"/>.</returns>
+        public static async Task<WebRequestResult<TResponse>> GetAsync<TResponse>(string url, 
+            KnownContentSerializers returnType = KnownContentSerializers.Json,
+            Action<HttpWebRequest> configureRequest = null, string bearerToken = null)
+        {
+            // Create server response holder
+            HttpWebResponse serverResponse;
+
+            try
+            {
+                // Make the standard Post call first
+                serverResponse = await GetAsync(url, configureRequest, bearerToken);
+            }
+            catch (Exception ex)
+            {
+                // If we got unexpected error, return that
+                return new WebRequestResult<TResponse>
+                {
+                    // Include exception message
+                    ErrorMessage = ex.Message
+                };
+            }
+
+            // Creates result based on the server response.
+            var result = CreateWebRequestResult<TResponse>(serverResponse, returnType);
+            // Close the response stream.
+            serverResponse.Close();
+
+            return result;
+        }
+
+        /// <summary>
         ///     POSTs a web request to an URL and returns the raw http web response
         /// </summary>
         /// <remarks>IMPORTANT: Remember to close the returned <see cref="HttpWebResponse"/> stream once done</remarks>
@@ -72,8 +114,11 @@ namespace Ixs.DNA
         /// <param name="returnType">The expected type of content to be returned from the server</param>
         /// <param name="configureRequest">Allows caller to customize and configure the request prior to the content being written and sent</param>
         /// <param name="bearerToken">If specified, provides the Authorization header with `bearer token-here` for things like JWT bearer tokens</param>
-        /// <returns></returns>
-        public static async Task<HttpWebResponse> PostAsync(string url, object content = null, KnownContentSerializers sendType = KnownContentSerializers.Json, KnownContentSerializers returnType = KnownContentSerializers.Json, Action<HttpWebRequest> configureRequest = null, string bearerToken = null)
+        /// <returns>Returns <see cref="HttpWebResponse"/> wrapped in <see cref="Task" />.</returns>
+        /// <exception cref="WebException">If there is no <see cref="HttpWebResponse"/> even in the exception response.</exception>
+        public static async Task<HttpWebResponse> PostAsync(string url, object content = null,
+            KnownContentSerializers sendType = KnownContentSerializers.Json, KnownContentSerializers returnType = KnownContentSerializers.Json,
+            Action<HttpWebRequest> configureRequest = null, string bearerToken = null)
         {
             #region Setup
 
@@ -115,8 +160,10 @@ namespace Ixs.DNA
 
                 // Serialize to Json?
                 if (sendType == KnownContentSerializers.Json)
+                {
                     // Serialize content to Json string
                     contentString = JsonConvert.SerializeObject(content);
+                }
                 // Serialize to Xml?
                 else if (sendType == KnownContentSerializers.Xml)
                 {
@@ -136,7 +183,7 @@ namespace Ixs.DNA
                 // Currently unknown
                 else
                 {
-                    // TODO: Throw error once we have DNA Framework exception types
+                    throw new InvalidOperationException("No serializer defined!");
                 }
 
                 // 
@@ -185,17 +232,20 @@ namespace Ixs.DNA
         /// <summary>
         ///     POSTs a web request to an URL and returns a response of the expected data type
         /// </summary>
+        /// <typeparam name="TResponse">The expected data type.</typeparam>
         /// <param name="url">The URL</param>
         /// <param name="content">The content to post</param>
         /// <param name="sendType">The format to serialize the content into</param>
         /// <param name="returnType">The expected type of content to be returned from the server</param>
         /// <param name="configureRequest">Allows caller to customize and configure the request prior to the content being written and sent</param>
         /// <param name="bearerToken">If specified, provides the Authorization header with `bearer token-here` for things like JWT bearer tokens</param>
-        /// <returns></returns>
-        public static async Task<WebRequestResult<TResponse>> PostAsync<TResponse>(string url, object content = null, KnownContentSerializers sendType = KnownContentSerializers.Json, KnownContentSerializers returnType = KnownContentSerializers.Json, Action<HttpWebRequest> configureRequest = null, string bearerToken = null)
+        /// <returns>Returns request data with expected parsed response data wrapped in <see cref="Task"/>.</returns>
+        public static async Task<WebRequestResult<TResponse>> PostAsync<TResponse>(string url, object content = null,
+            KnownContentSerializers sendType = KnownContentSerializers.Json, KnownContentSerializers returnType = KnownContentSerializers.Json,
+            Action<HttpWebRequest> configureRequest = null, string bearerToken = null)
         {
             // Create server response holder
-            var serverResponse = default(HttpWebResponse);
+            HttpWebResponse serverResponse;
 
             try
             {
@@ -212,13 +262,32 @@ namespace Ixs.DNA
                 };
             }
 
+            // Creates result based on the server response.
+            var result = CreateWebRequestResult<TResponse>(serverResponse, returnType);
+            // Close the response stream.
+            serverResponse.Close();
+
+            return result;
+        }
+
+        #region Private Helpers
+
+        /// <summary>
+        ///     Creates web request result based on the server response on input with specified return type.
+        /// </summary>
+        /// <typeparam name="T">Type of the response requested.</typeparam>
+        /// <param name="response">The server response.</param>
+        /// <param name="returnType">The return type specified.</param>
+        /// <returns>Result made based on the server response.</returns>
+        private static WebRequestResult<T> CreateWebRequestResult<T>(HttpWebResponse response, KnownContentSerializers returnType)
+        {
             // Create a result
-            var result = serverResponse.CreateWebRequestResult<TResponse>();
+            var result = response.CreateWebRequestResult<T>();
 
             // If the response status code is not 200...
             if (result.StatusCode != HttpStatusCode.OK)
             {
-                // Call failed
+                // Call was successfully, but failed in terms of response status
                 // Return no error message so the client can display its own based on the status code
 
                 // Done
@@ -234,10 +303,10 @@ namespace Ixs.DNA
             try
             {
                 // If the server response type was not the expected type...
-                if (!serverResponse.ContentType.ToLower().Contains(returnType.ToMimeString().ToLower()))
+                if (!response.ContentType.ToLower().Contains(returnType.ToMimeString().ToLower()))
                 {
                     // Fail due to unexpected return type
-                    result.ErrorMessage = $"Server did not return data in expected type. Expected {returnType.ToMimeString()}, received {serverResponse.ContentType}";
+                    result.ErrorMessage = $"Server did not return data in expected type. Expected {returnType.ToMimeString()}, received {response.ContentType}";
 
                     // Done
                     return result;
@@ -247,24 +316,24 @@ namespace Ixs.DNA
                 if (returnType == KnownContentSerializers.Json)
                 {
                     // Deserialize Json string
-                    result.ServerResponse = JsonConvert.DeserializeObject<TResponse>(result.RawServerResponse);
+                    result.ServerResponse = JsonConvert.DeserializeObject<T>(result.RawServerResponse);
                 }
                 // Xml?
                 else if (returnType == KnownContentSerializers.Xml)
                 {
                     // Create Xml serializer
-                    var xmlSerializer = new XmlSerializer(typeof(TResponse));
+                    var xmlSerializer = new XmlSerializer(typeof(T));
 
                     // Create a memory stream for the raw string data
                     using (var memoryStream = new MemoryStream(Encoding.UTF8.GetBytes(result.RawServerResponse)))
                         // Deserialize XML string
-                        result.ServerResponse = (TResponse)xmlSerializer.Deserialize(memoryStream);
+                        result.ServerResponse = (T)xmlSerializer.Deserialize(memoryStream);
                 }
                 // Unknown
                 else
                 {
                     // If deserialize failed then set error message
-                    result.ErrorMessage = "Unknown return type, cannot deserialize server response to the expected type";
+                    result.ErrorMessage = "Unknown return type, cannot deserialize server response to the expected type.";
 
                     // Done
                     return result;
@@ -273,7 +342,7 @@ namespace Ixs.DNA
             catch (Exception)
             {
                 // If deserialize failed then set error message
-                result.ErrorMessage = "Failed to deserialize server response to the expected type";
+                result.ErrorMessage = "Failed to deserialize server response to the expected type.";
 
                 // Done
                 return result;
@@ -282,5 +351,7 @@ namespace Ixs.DNA
             // Return result
             return result;
         }
+
+        #endregion
     }
 }

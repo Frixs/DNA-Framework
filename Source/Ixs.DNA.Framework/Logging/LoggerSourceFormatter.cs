@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 
-namespace Ixs.DNA
+namespace Ixs.DNA.Logging
 {
     /// <summary>
     ///     Formats a message when the callers source information is provided first in the arguments

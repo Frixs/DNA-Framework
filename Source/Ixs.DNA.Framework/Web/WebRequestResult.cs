@@ -1,6 +1,6 @@
 ﻿using System.Net;
 
-namespace Ixs.DNA
+namespace Ixs.DNA.Web
 {
     /// <summary>
     ///     A web response from a call to get generic object data from a HTTP server
@@ -8,7 +8,7 @@ namespace Ixs.DNA
     public class WebRequestResult
     {
         /// <summary>
-        ///     If the call was successful
+        ///     If the call was successful (= no error messages)
         /// </summary>
         public bool Successful => ErrorMessage == null;
 

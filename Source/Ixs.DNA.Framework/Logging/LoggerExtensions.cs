@@ -1,8 +1,9 @@
-﻿using Microsoft.Extensions.Logging;
-using System;
+﻿using System;
 using System.Runtime.CompilerServices;
+using Ixs.DNA.Extensions;
+using Microsoft.Extensions.Logging;
 
-namespace Ixs.DNA
+namespace Ixs.DNA.Logging
 {
     /// <summary>
     ///     Extensions for <see cref="ILogger"/> loggers
