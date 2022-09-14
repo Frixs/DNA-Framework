@@ -2,12 +2,12 @@
 using System.Linq.Expressions;
 using System.Reflection;
 
-namespace Ixs.DNA
+namespace Ixs.DNA.Extensions
 {
     /// <summary>
     ///     A helper for expressions.
     /// </summary>
-    public static class ExpressionHelpers
+    public static class ExpressionExtensions
     {
         /// <summary>
         ///     Compiles an expression and gets the functions return value.

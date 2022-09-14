@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Text.RegularExpressions;
 
-namespace Ixs.DNA
+namespace Ixs.DNA.Extensions
 {
     /// <summary>
     ///     Extension methods for strings

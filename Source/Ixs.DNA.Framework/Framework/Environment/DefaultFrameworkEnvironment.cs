@@ -7,7 +7,7 @@ namespace Ixs.DNA
     /// <summary>
     ///     Default implementation about the current framework environment
     /// </summary>
-    public class DefaultFrameworkEnvironment : IFrameworkEnvironment
+    internal class DefaultFrameworkEnvironment : IFrameworkEnvironment
     {
         #region Public Properties
 

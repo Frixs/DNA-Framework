@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Net;
 using System.Threading.Tasks;
+using Ixs.DNA.Logging;
 using Microsoft.Extensions.Logging;
 
 namespace Ixs.DNA.Web

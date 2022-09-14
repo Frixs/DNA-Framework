@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 
-namespace Ixs.DNA
+namespace Ixs.DNA.Extensions
 {
     /// <summary>
     ///     Extension methods for reflection methods

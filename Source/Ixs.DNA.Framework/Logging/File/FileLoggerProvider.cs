@@ -1,7 +1,7 @@
-﻿using Microsoft.Extensions.Logging;
-using System.Collections.Concurrent;
+﻿using System.Collections.Concurrent;
+using Microsoft.Extensions.Logging;
 
-namespace Ixs.DNA
+namespace Ixs.DNA.Logging.File
 {
     /// <summary>
     ///     Provides the ability to log to file

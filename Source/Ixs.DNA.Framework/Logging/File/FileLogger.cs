@@ -1,9 +1,9 @@
-﻿using Microsoft.Extensions.Logging;
-using System;
+﻿using System;
 using System.Collections.Concurrent;
 using System.IO;
+using Microsoft.Extensions.Logging;
 
-namespace Ixs.DNA
+namespace Ixs.DNA.Logging.File
 {
     /// <summary>
     ///     A logger that writes the logs to file
@@ -140,7 +140,7 @@ namespace Ixs.DNA
                     Directory.CreateDirectory(fileDirPath);
 
                 // Open the file
-                using (var fileStream = new StreamWriter(File.Open(filePath, FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.ReadWrite), encoding: mConfiguration.FileEncoding))
+                using (var fileStream = new StreamWriter(System.IO.File.Open(filePath, FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.ReadWrite), encoding: mConfiguration.FileEncoding))
                 {
                     // Go to end
                     fileStream.BaseStream.Seek(0, SeekOrigin.End);
