@@ -15,12 +15,12 @@ namespace Ixs.DNA.Logging.File
         /// <summary>
         ///     A list of file locks based on path
         /// </summary>
-        protected static ConcurrentDictionary<string, object> FileLocks = new ConcurrentDictionary<string, object>();
+        protected static ConcurrentDictionary<string, object> mFileLocks = new ConcurrentDictionary<string, object>();
 
         /// <summary>
         ///     The lock to lock the list of locks
         /// </summary>
-        protected static object FileLockLock = new object();
+        protected static object mFileLockLock = new object();
 
         #endregion
 
@@ -117,7 +117,7 @@ namespace Ixs.DNA.Logging.File
 
             // Get dir info based on configuration
             string fileDirPath = mConfiguration.SingleLogFile
-                ? Path.GetDirectoryName(mLogPath) // single file
+                ? Path.GetDirectoryName(mLogPath) ?? string.Empty // single file
                 : Path.Combine(mLogPath, currentYearMonthString); // datetime file hierarchy
             
             // Get file info based on configuration
@@ -125,12 +125,12 @@ namespace Ixs.DNA.Logging.File
                 ? mLogPath // single file
                 : Path.Combine(fileDirPath, $"{dto:yyyy-MM-dd}.log"); // datetime file hierarchy
             
-            var fileLock = default(object);
+            object fileLock;
             // Double safety even though the FileLocks should be thread safe
-            lock (FileLockLock)
+            lock (mFileLockLock)
             {
                 // Get the file lock based on the absolute path
-                fileLock = FileLocks.GetOrAdd(normalizedLogPath, path => new object());
+                fileLock = mFileLocks.GetOrAdd(normalizedLogPath, path => new object());
             }
             // Lock the file
             lock (fileLock)
