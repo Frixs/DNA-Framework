@@ -9,9 +9,9 @@
     <PackageProjectUrl>https://github.com/Frixs/DNA-Framework</PackageProjectUrl>
     <RepositoryUrl>https://github.com/Frixs/DNA-Framework</RepositoryUrl>
     <PackageTags></PackageTags>
-    <PackageReleaseNotes>Namespace update, Web requests update</PackageReleaseNotes>
+    <PackageReleaseNotes>Added HostBuilder extensions</PackageReleaseNotes>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>10.0.1.0</Version>
+    <Version>10.0.1.1</Version>
     <PackageId>Ixs.DNA.Framework</PackageId>
     <PlatformTarget>x64</PlatformTarget>
     <Title>Ixs.DNA.Framework</Title>
@@ -48,6 +48,7 @@
     <PackageReference Include="Microsoft.Extensions.Configuration.EnvironmentVariables" Version="6.0.1" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="6.0.0" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="6.0.0" />
     <PackageReference Include="Microsoft.Extensions.Logging" Version="6.0.0" />
     <PackageReference Include="Microsoft.Extensions.Logging.Configuration" Version="6.0.0" />
     <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="6.0.0" />

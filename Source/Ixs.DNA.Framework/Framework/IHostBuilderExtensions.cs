@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.Hosting;
 using System;
 
-namespace Ixs.DNA.AspNet
+namespace Ixs.DNA
 {
     /// <summary>
     ///     Extensions for <see cref="IHostBuilder"/>
