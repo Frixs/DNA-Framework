@@ -3,12 +3,12 @@
 namespace Ixs.DNA.AspNet
 {
     /// <summary>
-    /// Extensions for <see cref="IApplicationBuilder"/>
+    ///     Extensions for <see cref="IApplicationBuilder"/>
     /// </summary>
     public static class ApplicationBuilderExtensions
     {
         /// <summary>
-        /// Builds the Dna Framework Construct and sets the Framework.Provider from the <see cref="IApplicationBuilder"/>
+        ///     Builds the Dna Framework Construct and sets the Framework.Provider from the <see cref="IApplicationBuilder"/>
         /// </summary>
         /// <param name="app">The application builder</param>
         /// <returns></returns>
