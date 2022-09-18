@@ -1,20 +1,20 @@
-﻿using Microsoft.AspNetCore.Hosting;
+﻿using Microsoft.Extensions.Hosting;
 using System;
 
 namespace Ixs.DNA.AspNet
 {
     /// <summary>
-    ///     Extensions for <see cref="IWebHostBuilder"/>
+    ///     Extensions for <see cref="IHostBuilder"/>
     /// </summary>
-    public static class WebHostBuilderExtensions
+    public static class HostBuilderExtensions
     {
         /// <summary>
         ///     Adds the Dna Framework construct to the ASP.Net Core application
         /// </summary>
-        /// <param name="builder">The web host builder</param>
+        /// <param name="builder">The host builder</param>
         /// <param name="configure">Custom action to configure the Dna Framework</param>
         /// <returns>Return the builder for further chaining.</returns>
-        public static IWebHostBuilder UseDnaFramework(this IWebHostBuilder builder, Action<FrameworkConstruction> configure = null)
+        public static IHostBuilder UseDnaFramework(this IHostBuilder builder, Action<FrameworkConstruction> configure = null)
         {
             builder.ConfigureServices((context, services) =>
             {
