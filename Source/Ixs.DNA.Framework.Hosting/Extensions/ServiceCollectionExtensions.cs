@@ -20,6 +20,10 @@ namespace Ixs.DNA.Hosting.Extensions
         ///     and once the builder builds, provider is available for us, so we can use to build our framework using 
         ///     <see cref="ApplicationBuilderExtensions.UseDnaFramework"/> - usually in Startup.Configure method
         ///     which is standard pattern for hosted projects.
+        ///     <para>
+        ///         Interesting reading about history of host builders:
+        ///         https://andrewlock.net/exploring-dotnet-6-part-2-comparing-webapplicationbuilder-to-the-generic-host/
+        ///     </para>
         /// </remarks>
         /// <param name="services">The services to use</param>
         /// <returns></returns>
