@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using System.Net;
 
-namespace Ixs.DNA.Web
+namespace Ixs.DNA.Web.Request
 {
     /// <summary>
     ///     Extension methods for <see cref="HttpWebResponse"/>

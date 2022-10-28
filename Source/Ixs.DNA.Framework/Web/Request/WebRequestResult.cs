@@ -1,6 +1,6 @@
 ﻿using System.Net;
 
-namespace Ixs.DNA.Web
+namespace Ixs.DNA.Web.Request
 {
     /// <summary>
     ///     A web response from a call to get generic object data from a HTTP server

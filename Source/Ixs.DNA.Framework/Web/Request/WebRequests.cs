@@ -1,4 +1,4 @@
-﻿using Ixs.DNA.Web.Constants;
+﻿using Ixs.DNA.Web.Request.Constants;
 using Newtonsoft.Json;
 using System;
 using System.IO;
@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
 
-namespace Ixs.DNA.Web
+namespace Ixs.DNA.Web.Request
 {
     /// <summary>
     ///     Provides HTTP calls for sending and receiving information from a HTTP server
@@ -74,7 +74,7 @@ namespace Ixs.DNA.Web
         /// <param name="configureRequest">Allows caller to customize and configure the request prior to the request being sent.</param>
         /// <param name="bearerToken">If specified, provides the Authorization header with `bearer token-here` for things like JWT bearer tokens</param>
         /// <returns>Returns request data with expected parsed response data wrapped in <see cref="Task"/>.</returns>
-        public static async Task<WebRequestResult<TResponse>> GetAsync<TResponse>(string url, 
+        public static async Task<WebRequestResult<TResponse>> GetAsync<TResponse>(string url,
             KnownContentSerializers returnType = KnownContentSerializers.Json,
             Action<HttpWebRequest> configureRequest = null, string bearerToken = null)
         {

@@ -1,4 +1,4 @@
-﻿namespace Ixs.DNA.Web.Constants
+﻿namespace Ixs.DNA.Web.Request.Constants
 {
     /// <summary>
     ///     Extension methods for <see cref="KnownContentSerializers"/>

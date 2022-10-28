@@ -1,10 +1,10 @@
-﻿using System;
+﻿using Ixs.DNA.Logging;
+using Microsoft.Extensions.Logging;
+using System;
 using System.Net;
 using System.Threading.Tasks;
-using Ixs.DNA.Logging;
-using Microsoft.Extensions.Logging;
 
-namespace Ixs.DNA.Web
+namespace Ixs.DNA.Web.Request
 {
     /// <summary>
     ///     Continually hits up a web HTTP/HTTPS endpoint checking for a valid response.
@@ -104,7 +104,7 @@ namespace Ixs.DNA.Web
                     webResponse?.Close();
 
                     // Log it
-                    logger?.LogTraceSource($"HttpEndpointChecker {endpoint} { (responsive ? "is" : "is not") } responsive");
+                    logger?.LogTraceSource($"HttpEndpointChecker {endpoint} {(responsive ? "is" : "is not")} responsive");
 
                     // If the state has changed...
                     if (!mFirstCallMade || responsive != Responsive)

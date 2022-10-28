@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFrameworks>netstandard2.0;netstandard2.1</TargetFrameworks>
     <RootNamespace>Ixs.DNA</RootNamespace>
     <Authors>Tomas Frixs</Authors>
     <Company>Frixs</Company>
@@ -9,31 +9,15 @@
     <PackageProjectUrl>https://github.com/Frixs/DNA-Framework</PackageProjectUrl>
     <RepositoryUrl>https://github.com/Frixs/DNA-Framework</RepositoryUrl>
     <PackageTags></PackageTags>
-    <PackageReleaseNotes>Added HostBuilder extensions</PackageReleaseNotes>
+    <PackageReleaseNotes>Added support for netstandard2.1 and Web requests namespace moved</PackageReleaseNotes>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>10.0.1.1</Version>
+    <Version>10.1.0</Version>
     <PackageId>Ixs.DNA.Framework</PackageId>
     <PlatformTarget>x64</PlatformTarget>
     <Title>Ixs.DNA.Framework</Title>
     <Copyright></Copyright>
     <PackageIcon>icon.png</PackageIcon>
     <Platforms>AnyCPU;x64</Platforms>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile></DocumentationFile>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <DocumentationFile />
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>bin\Release\netstandard2.0\Dna.Framework.xml</DocumentationFile>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <DocumentationFile>bin\Release\netstandard2.0\Dna.Framework.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
@@ -47,7 +31,7 @@
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="6.0.1" />
     <PackageReference Include="Microsoft.Extensions.Configuration.EnvironmentVariables" Version="6.0.1" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="6.0.0" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.1" />
     <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="6.0.0" />
     <PackageReference Include="Microsoft.Extensions.Logging" Version="6.0.0" />
     <PackageReference Include="Microsoft.Extensions.Logging.Configuration" Version="6.0.0" />
