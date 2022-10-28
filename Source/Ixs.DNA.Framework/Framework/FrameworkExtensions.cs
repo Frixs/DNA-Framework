@@ -45,11 +45,8 @@ namespace Ixs.DNA
 
             // Inject configuration into services
             var configuration = configurationBuilder.Build();
-            construction.Services.AddSingleton<IConfiguration>(configuration);
-
-            // Set the construction Configuration
-            construction.UseConfiguration(configuration);
-
+            construction.AddConfiguration(configuration);
+            
             // Chain the construction
             return construction;
         }
