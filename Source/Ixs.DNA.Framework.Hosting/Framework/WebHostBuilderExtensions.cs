@@ -1,7 +1,7 @@
-﻿using Microsoft.AspNetCore.Hosting;
-using System;
+﻿using System;
+using Microsoft.AspNetCore.Hosting;
 
-namespace Ixs.DNA.AspNet
+namespace Ixs.DNA.Hosting
 {
     /// <summary>
     ///     Extensions for <see cref="IWebHostBuilder"/>

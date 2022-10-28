@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Builder;
 
-namespace Ixs.DNA.AspNet
+namespace Ixs.DNA.Hosting
 {
     /// <summary>
     ///     Extensions for <see cref="IApplicationBuilder"/>
@@ -8,10 +8,10 @@ namespace Ixs.DNA.AspNet
     public static class ApplicationBuilderExtensions
     {
         /// <summary>
-        ///     Builds the Dna Framework Construct and sets the Framework.Provider from the <see cref="IApplicationBuilder"/>
+        ///     Builds the DNA Framework Construct and sets the Framework.Provider from the <see cref="IApplicationBuilder"/>
         /// </summary>
         /// <param name="app">The application builder</param>
-        /// <returns></returns>
+        /// <returns>The builder for further chaining.</returns>
         public static IApplicationBuilder UseDnaFramework(this IApplicationBuilder app)
         {
             // Build the framework as at this point we know the provider is available

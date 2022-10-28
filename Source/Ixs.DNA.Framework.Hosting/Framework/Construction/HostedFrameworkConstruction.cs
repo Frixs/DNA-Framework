@@ -1,4 +1,4 @@
-﻿namespace Ixs.DNA
+﻿namespace Ixs.DNA.Hosting
 {
     /// <summary>
     ///     Creates a default framework construction containing all 

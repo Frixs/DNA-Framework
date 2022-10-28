@@ -9,8 +9,6 @@ namespace Ixs.DNA
     /// </summary>
     internal class DefaultFrameworkEnvironment : IFrameworkEnvironment
     {
-        #region Public Properties
-
         /// <summary>
         ///     True if we are in a development (specifically, debuggable) environment
         /// </summary>
@@ -27,19 +25,5 @@ namespace Ixs.DNA
         ///     https://github.com/dotnet/corefx/issues/27417
         /// </summary>
         public bool IsMobile => RuntimeInformation.FrameworkDescription?.ToLower().Contains("mono") == true;
-
-        #endregion
-
-        #region Constructor
-
-        /// <summary>
-        ///     Default constructor
-        /// </summary>
-        public DefaultFrameworkEnvironment()
-        {
-
-        }
-
-        #endregion
     }
 }

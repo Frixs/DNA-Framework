@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFrameworks>netstandard2.0;netstandard2.1</TargetFrameworks>
-    <RootNamespace>Ixs.DNA.AspNet</RootNamespace>
+    <RootNamespace>Ixs.DNA.Hosting</RootNamespace>
     <Authors>Tomas Frixs</Authors>
     <Company>Frixs</Company>
     <Description>The ASP.Net Core easy-integration support for Dna.Framework, the cross-platform base framework useful for all projects that use .Net Core (x64).</Description>
