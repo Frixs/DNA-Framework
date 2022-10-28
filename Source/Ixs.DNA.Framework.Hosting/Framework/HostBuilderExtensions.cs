@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Hosting;
+﻿using Ixs.DNA.Hosting.Extensions;
+using Microsoft.Extensions.Hosting;
 using System;
 
 namespace Ixs.DNA.Hosting

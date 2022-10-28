@@ -1,5 +1,6 @@
-﻿using System;
+﻿using Ixs.DNA.Hosting.Extensions;
 using Microsoft.AspNetCore.Hosting;
+using System;
 
 namespace Ixs.DNA.Hosting
 {
