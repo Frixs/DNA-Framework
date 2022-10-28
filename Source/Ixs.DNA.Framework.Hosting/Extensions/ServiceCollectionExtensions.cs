@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 
-namespace Ixs.DNA
+namespace Ixs.DNA.Hosting.Extensions
 {
     /// <summary>
     ///     Extension methods for the <see cref="IServiceCollection"/>
