@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Builder;
 
-namespace Ixs.DNA.AspNet
+namespace Ixs.DNA.Hosting
 {
     /// <summary>
     ///     Extensions for <see cref="IApplicationBuilder"/>
