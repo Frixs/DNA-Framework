@@ -5,13 +5,13 @@
     <RootNamespace>Ixs.DNA.Hosting</RootNamespace>
     <Authors>Tomas Frixs</Authors>
     <Company>Frixs</Company>
-    <Description>The ASP.Net Core easy-integration support for Dna.Framework, the cross-platform base framework useful for all projects that use .Net Core (x64).</Description>
+    <Description>The ASP.Net Core easy-integration support for Dna.Framework, the cross-platform base framework useful for all projects that use .Net Core.</Description>
     <PackageProjectUrl>https://github.com/Frixs/DNA-Framework</PackageProjectUrl>
     <RepositoryUrl>https://github.com/angelsix/dna-framework</RepositoryUrl>
     <PackageTags>dna framework asp net angelsix luke malpass web core cross platform</PackageTags>
-    <PackageReleaseNotes>Moved from previous AspNet package and added hosted directives from base Ixs.DNA to this package.</PackageReleaseNotes>
+    <PackageReleaseNotes>Adeed AnyCPU build.</PackageReleaseNotes>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
-    <Version>10.2.0</Version>
+    <Version>10.2.1</Version>
     <UserSecretsId>88bce10f-a24c-421d-9cbd-de1c99f427e5</UserSecretsId>
     <PlatformTarget>x64</PlatformTarget>
     <Platforms>AnyCPU;x64</Platforms>
@@ -26,7 +26,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Ixs.DNA.Framework" Version="10.2.0" />
+    <PackageReference Include="Ixs.DNA.Framework" Version="10.2.1" />
     <PackageReference Include="Microsoft.AspNetCore.Hosting.Abstractions" Version="2.2.0" />
   </ItemGroup>
 

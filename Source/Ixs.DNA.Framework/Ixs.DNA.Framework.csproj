@@ -5,13 +5,13 @@
     <RootNamespace>Ixs.DNA</RootNamespace>
     <Authors>Tomas Frixs</Authors>
     <Company>Frixs</Company>
-    <Description>A cross-platform base framework useful for all projects that use .NET (x64).</Description>
+    <Description>A cross-platform base framework useful for all projects that use .NET.</Description>
     <PackageProjectUrl>https://github.com/Frixs/DNA-Framework</PackageProjectUrl>
     <RepositoryUrl>https://github.com/Frixs/DNA-Framework</RepositoryUrl>
     <PackageTags></PackageTags>
-    <PackageReleaseNotes>Created new Hosting extension of this package. Moved hosting directives into it.</PackageReleaseNotes>
+    <PackageReleaseNotes>Added AnyCPU build.</PackageReleaseNotes>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>10.2.0</Version>
+    <Version>10.2.1</Version>
     <PackageId>Ixs.DNA.Framework</PackageId>
     <PlatformTarget>x64</PlatformTarget>
     <Title>Ixs.DNA.Framework</Title>
