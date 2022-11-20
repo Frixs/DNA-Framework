@@ -11,9 +11,9 @@
     <PackageTags></PackageTags>
     <PackageReleaseNotes>Added AnyCPU build.</PackageReleaseNotes>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>10.2.1</Version>
+    <Version>10.2.2</Version>
     <PackageId>Ixs.DNA.Framework</PackageId>
-    <PlatformTarget>x64</PlatformTarget>
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <Title>Ixs.DNA.Framework</Title>
     <Copyright></Copyright>
     <PackageIcon>icon.png</PackageIcon>
