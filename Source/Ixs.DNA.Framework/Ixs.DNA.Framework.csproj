@@ -9,9 +9,9 @@
     <PackageProjectUrl>https://github.com/Frixs/DNA-Framework</PackageProjectUrl>
     <RepositoryUrl>https://github.com/Frixs/DNA-Framework</RepositoryUrl>
     <PackageTags></PackageTags>
-    <PackageReleaseNotes>Added AnyCPU build.</PackageReleaseNotes>
+    <PackageReleaseNotes>Added Framework new shortcut methods.</PackageReleaseNotes>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>10.2.2</Version>
+    <Version>10.2.6</Version>
     <PackageId>Ixs.DNA.Framework</PackageId>
     <PlatformTarget>AnyCPU</PlatformTarget>
     <Title>Ixs.DNA.Framework</Title>

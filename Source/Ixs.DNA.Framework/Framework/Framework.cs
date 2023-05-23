@@ -1,6 +1,7 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using System;
+﻿using Ixs.DNA.Extensions;
 using Ixs.DNA.Logging;
+using Microsoft.Extensions.DependencyInjection;
+using System;
 using static Ixs.DNA.FrameworkDI;
 
 namespace Ixs.DNA
@@ -107,6 +108,10 @@ namespace Ixs.DNA
             return Construction;
         }
 
+        #endregion
+
+        #region Shortcut Methods
+
         /// <summary>
         ///     Shortcut to Framework.Provider.GetService to get an injected service of type <typeparamref name="T"/>
         /// </summary>
@@ -116,6 +121,117 @@ namespace Ixs.DNA
         {
             // Use provider to get the service
             return Provider.GetService<T>();
+        }
+
+        /// <summary>
+        ///     Shortcut to get Environment variable.
+        /// </summary>
+        /// <param name="name">The name of the variable.</param>
+        /// <returns>Value represented as <see langword="string"/> or <see langword="null"/> on failure.</returns>
+        public static string GetEnvironmentVariable(string name)
+        {
+            return Environment.GetEnvironmentVariable(name);
+        }
+
+        /// <summary>
+        ///     Shortcut to get Environment variable with parsing the value.
+        /// </summary>
+        /// <typeparam name="T">Desired type that the values should be parsed to (default <see langword="string"/>).</typeparam>
+        /// <param name="name">The name of the variable.</param>
+        /// <returns>Parsed value in <typeparamref name="T"/> or <see langword="null"/> on failure.</returns>
+        /// <remarks>
+        ///     For supported types in parsing, see <see cref="StringExtensions.ParseValue{T}"/>.
+        /// </remarks>
+        public static T? GetEnvironmentVariable<T>(string name)
+            where T : struct
+        {
+            string val = Environment.GetEnvironmentVariable(name);
+            return val?.ParseValue<T>();
+        }
+
+        /// <summary>
+        ///     Shortcut to get Environment variable.
+        ///     If the process fails, <see cref="GetConfigurationValue(string)"/> gets fired as backup process to get the desired value.
+        /// </summary>
+        /// <param name="name">The name of the variable.</param>
+        /// <param name="backupConfigurationValueKey">Section key to navigate to the configuration value.</param>
+        /// <returns>Value represented as <see langword="string"/> or <see langword="null"/> on failure.</returns>
+        public static string GetEnvironmentVariable(string name, string backupConfigurationValueKey)
+        {
+            return GetEnvironmentVariable(name) ?? GetConfigurationValue(backupConfigurationValueKey);
+        }
+
+        /// <summary>
+        ///     Shortcut to get Environment variable with parsing the value.
+        ///     If the process fails, <see cref="GetConfigurationValue{T}(string)"/> gets fired as backup process to get the desired value.
+        /// </summary>
+        /// <typeparam name="T">Desired type that the values should be parsed to (default <see langword="string"/>).</typeparam>
+        /// <param name="name">The name of the variable.</param>
+        /// <param name="backupConfigurationValueKey">Section key to navigate to the configuration value.</param>
+        /// <returns>Parsed value in <typeparamref name="T"/> or <see langword="null"/> on failure.</returns>
+        /// <remarks>
+        ///     For supported types in parsing, see <see cref="StringExtensions.ParseValue{T}"/>.
+        /// </remarks>
+        public static T? GetEnvironmentVariable<T>(string name, string backupConfigurationValueKey)
+            where T : struct
+        {
+            return GetEnvironmentVariable<T>(name) ?? GetConfigurationValue<T>(backupConfigurationValueKey);
+        }
+
+        /// <summary>
+        ///     Shortcut to Construction to get configuration value.
+        /// </summary>
+        /// <param name="key">Section key to navigate to the configuration value.</param>
+        /// <returns>Value represented as <see langword="string"/> or <see langword="null"/> on failure.</returns>
+        public static string GetConfigurationValue(string key)
+        {
+            var csec = Construction.Configuration.GetSection(key);
+            return csec?.Value;
+        }
+
+        /// <summary>
+        ///     Shortcut to Construction to get configuration value with parsing the value.
+        /// </summary>
+        /// <typeparam name="T">Desired type that the values should be parsed to (default <see langword="string"/>).</typeparam>
+        /// <param name="key">Section key to navigate to the configuration value.</param>
+        /// <returns>Parsed value in <typeparamref name="T"/> or <see langword="null"/> on failure.</returns>
+        /// <remarks>
+        ///     For supported types in parsing, see <see cref="StringExtensions.ParseValue{T}"/>.
+        /// </remarks>
+        public static T? GetConfigurationValue<T>(string key)
+            where T : struct
+        {
+            var csec = Construction.Configuration.GetSection(key);
+            return csec?.Value?.ParseValue<T>();
+        }
+
+        /// <summary>
+        ///     Shortcut to Construction to get configuration value.
+        ///     If the process fails, <see cref="GetEnvironmentVariable(string)"/> gets fired as backup process to get the desired value.
+        /// </summary>
+        /// <param name="key">Section key to navigate to the configuration value.</param>
+        /// <param name="backupEnvironmentVariableName">The name of the environment variable.</param>
+        /// <returns>Value represented as <see langword="string"/> or <see langword="null"/> on failure.</returns>
+        public static string GetConfigurationValue(string key, string backupEnvironmentVariableName)
+        {
+            return GetConfigurationValue(key) ?? GetEnvironmentVariable(backupEnvironmentVariableName);
+        }
+
+        /// <summary>
+        ///     Shortcut to Construction to get configuration value with parsing the value.
+        ///     If the process fails, <see cref="GetEnvironmentVariable{T}(string)"/> gets fired as backup process to get the desired value.
+        /// </summary>
+        /// <typeparam name="T">Desired type that the values should be parsed to (default <see langword="string"/>).</typeparam>
+        /// <param name="key">Section key to navigate to the configuration value.</param>
+        /// <param name="backupEnvironmentVariableName">The name of the environment variable.</param>
+        /// <returns>Parsed value in <typeparamref name="T"/> or <see langword="null"/> on failure.</returns>
+        /// <remarks>
+        ///     For supported types in parsing, see <see cref="StringExtensions.ParseValue{T}"/>.
+        /// </remarks>
+        public static T? GetConfigurationValue<T>(string key, string backupEnvironmentVariableName)
+            where T : struct
+        {
+            return GetConfigurationValue<T>(key) ?? GetEnvironmentVariable<T>(backupEnvironmentVariableName);
         }
 
         #endregion

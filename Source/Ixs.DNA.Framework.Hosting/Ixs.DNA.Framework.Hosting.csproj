@@ -9,9 +9,9 @@
     <PackageProjectUrl>https://github.com/Frixs/DNA-Framework</PackageProjectUrl>
     <RepositoryUrl>https://github.com/angelsix/dna-framework</RepositoryUrl>
     <PackageTags>dna framework asp net angelsix luke malpass web core cross platform</PackageTags>
-    <PackageReleaseNotes>Adeed AnyCPU build.</PackageReleaseNotes>
+    <PackageReleaseNotes>Added Framework new shortcut methods.</PackageReleaseNotes>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
-    <Version>10.2.2</Version>
+    <Version>10.2.6</Version>
     <UserSecretsId>88bce10f-a24c-421d-9cbd-de1c99f427e5</UserSecretsId>
     <PlatformTarget>AnyCPU</PlatformTarget>
     <Platforms>AnyCPU;x64</Platforms>
@@ -26,7 +26,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Ixs.DNA.Framework" Version="10.2.2" />
+    <PackageReference Include="Ixs.DNA.Framework" Version="10.2.6" />
     <PackageReference Include="Microsoft.AspNetCore.Hosting.Abstractions" Version="2.2.0" />
   </ItemGroup>
 

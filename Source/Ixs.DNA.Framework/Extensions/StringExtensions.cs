@@ -47,5 +47,57 @@ namespace Ixs.DNA.Extensions
 
             return string.Join(Environment.NewLine, newLines.ToArray());
         }
+
+        /// <summary>
+        ///     Parse string value into generically selected one.
+        /// </summary>
+        /// <typeparam name="T">The generic type to parse the value to.</typeparam>
+        /// <param name="input">The input value ready for parsing.</param>
+        /// <returns>Parsed value in <typeparamref name="T"/> or <see langword="null"/> on failure.</returns>
+        /// <remarks>
+        ///     It supports: <see langword="short"/>, <see langword="int"/>, <see langword="long"/>,
+        ///     <see langword="float"/>, <see langword="double"/>, <see langword="char"/>, <see langword="bool"/>.
+        /// </remarks>
+        public static T? ParseValue<T>(this string input)
+            where T : struct
+        {
+            if (typeof(T) == typeof(int))
+            {
+                if (int.TryParse(input, out var val))
+                    return (T)(object)val;
+            }
+            else if (typeof(T) == typeof(short))
+            {
+                if (short.TryParse(input, out var val))
+                    return (T)(object)val;
+            }
+            else if (typeof(T) == typeof(long))
+            {
+                if (long.TryParse(input, out var val))
+                    return (T)(object)val;
+            }
+            else if (typeof(T) == typeof(float))
+            {
+                if (float.TryParse(input, out var val))
+                    return (T)(object)val;
+            }
+            else if (typeof(T) == typeof(double))
+            {
+                if (double.TryParse(input, out var val))
+                    return (T)(object)val;
+            }
+            else if (typeof(T) == typeof(char))
+            {
+                if (char.TryParse(input, out var val))
+                    return (T)(object)val;
+            }
+            else if (typeof(T) == typeof(bool))
+            {
+                if (bool.TryParse(input, out var val))
+                    return (T)(object)val;
+            }
+
+            return null;
+        }
     }
 }
